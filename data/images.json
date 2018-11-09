@@ -218,5 +218,135 @@
         "roughness": 7
       }
     }
+    {
+      "image_id": 21,
+      "tags":
+      {
+        "brightness": 1.8,
+        "geometry": 7,
+        "temperature": 7,
+        "saturation": 1,
+        "density": 7.5,
+        "transparency": 1.5,
+        "roughness": 5
+      }
+    }
+    {
+      "image_id": 23,
+      "tags":
+      {
+        "brightness": 4,
+        "geometry": 1,
+        "temperature": 2,
+        "saturation": 1,
+        "density": 8,
+        "transparency": 3,
+        "roughness": 5.5
+      }
+    }
+    {
+      "image_id": 24,
+      "tags":
+      {
+        "brightness": 4,
+        "geometry": 2.8,
+        "temperature": 6,
+        "saturation": 6,
+        "density": 3,
+        "transparency": 1,
+        "roughness": 4
+      }
+    }
+    {
+      "image_id": 28,
+      "tags":
+      {
+        "brightness": 4.5,
+        "geometry": 7.5,
+        "temperature": 7.5,
+        "saturation": 3.5,
+        "density": 5.5,
+        "transparency": 1.5,
+        "roughness": 5
+      }
+    }
+    {
+      "image_id": 29,
+      "tags":
+      {
+        "brightness": 5,
+        "geometry": 8.5,
+        "temperature": 8,
+        "saturation": 9,
+        "density": 8,
+        "transparency": 1,
+        "roughness": 3.5
+      }
+    }
+    {
+      "image_id": 32,
+      "tags":
+      {
+        "brightness": 7.5,
+        "geometry": 6,
+        "temperature": 9.5,
+        "saturation": 10,
+        "density": 6.5,
+        "transparency": 3,
+        "roughness": 5
+      }
+    }
+    {
+      "image_id": 38,
+      "tags":
+      {
+        "brightness": 8,
+        "geometry": 3,
+        "temperature": 1,
+        "saturation": 3,
+        "density": 2,
+        "transparency": 8,
+        "roughness": 3.5
+      }
+    }
+    {
+      "image_id": 40,
+      "tags":
+      {
+        "brightness": 8,
+        "geometry": 3.8,
+        "temperature": 6,
+        "saturation": 6,
+        "density": 7.5,
+        "transparency": 3,
+        "roughness": 7.5
+      }
+    }
+    {
+      "image_id": 44,
+      "tags":
+      {
+        "brightness": 4,
+        "geometry": 5,
+        "temperature": 5,
+        "saturation": 7,
+        "density": 3,
+        "transparency": 7,
+        "roughness": 7.5
+      }
+    }
+    {
+      "image_id": 45,
+      "tags":
+      {
+        "brightness": 7.5,
+        "geometry": 7,
+        "temperature": 7,
+        "saturation": 8.5,
+        "density": 2.5,
+        "transparency": 7.5,
+        "roughness": 7.3
+      }
+    }
   ]
 }
