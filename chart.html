@@ -123,7 +123,10 @@
 				});
 			}
 
-			let imgs = [1, 2, 3];
+			let imgs = [];
+			for (let i=0; i < 5; i++) {
+				imgs.push(Math.round(Math.random() * 4));
+			}
 			drawChart(imgs);
 
 		</script>
