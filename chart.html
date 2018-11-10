@@ -7,7 +7,8 @@
 		<!-- Google fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-
+		<!-- jQuery -->
+		<script src="js/jquery.js"></script>
 		<!-- D3.js -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 
@@ -37,9 +38,11 @@
 
 		<div class="radarChart"></div>
 
-		<script src="radarChart.js"></script>
+		<script src="js/radarChart.js"></script>
 		<script>
 
+
+		/* Retrieve selection from localStorage */
 		let imgs = [];
 		if(typeof(Storage)!=="undefined" && localStorage.selection)
 		{
@@ -69,6 +72,9 @@
 			//////////////////////////////////////////////////////////////
 			////////////////////////// Data //////////////////////////////
 			//////////////////////////////////////////////////////////////
+			// $.getJSON("/data/images.json", function(json) {
+			// 	console.log(json);
+			// });
 
 			function drawChart(image_ids) {
 
@@ -87,8 +93,9 @@
 				let transparency = 0;
 				let roughness = 0;
 
+
 				// Replace ./data.json with your JSON feed
-				fetch('./data/images.json').then(response => {
+				fetch('/data/images.json').then(response => {
 				  return response.json();
 				}).then(allImages => {
 				  // Work with JSON data here
@@ -152,5 +159,6 @@
 			drawChart(imgs);
 
 		</script>
+
 	</body>
 </html>
