@@ -40,6 +40,22 @@
 		<script src="radarChart.js"></script>
 		<script>
 
+		let imgs = [];
+		if(typeof(Storage)!=="undefined" && localStorage.selection)
+		{
+			// let imgs = localStorage.selection;
+			selection = JSON.parse(window.localStorage.getItem("selection")); // Retrieving
+			for (let s of selection) {
+				let filename = s.split('/')[1];
+				let img_id = parseInt(filename.split('.')[0]);
+				imgs.push(img_id);
+			}
+		}
+		else
+		{
+			console.log('error at storage on chart');
+		}
+
       /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
 
 			//////////////////////////////////////////////////////////////
@@ -55,6 +71,13 @@
 			//////////////////////////////////////////////////////////////
 
 			function drawChart(image_ids) {
+
+				console.log(image_ids);
+
+				if (image_ids.length === 0)
+				{
+					console.log('imgs is empty');
+				}
 
 				let brightness = 0;
 				let geometry = 0;
@@ -72,6 +95,7 @@
 					let base = 0;
 					for (let image_id of image_ids) {
 						for (let image of allImages.images) {
+							console.log("here");
 							if (image_id === image.image_id) {
 								base += 10;
 								brightness += image.tags.brightness;
@@ -84,6 +108,8 @@
 							}
 						}
 					}
+
+					if (base === 0) {base = 1;}
 					const data =
 					[
 						[
@@ -119,14 +145,10 @@
 					// return (data);
 				}).catch(err => {
 				  // Do something for an error here
-					console.log('error');
+					console.log('fetch error');
 				});
 			}
 
-			let imgs = [];
-			for (let i=0; i < 5; i++) {
-				imgs.push(Math.round(Math.random() * 4));
-			}
 			drawChart(imgs);
 
 		</script>

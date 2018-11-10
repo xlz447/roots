@@ -1,3 +1,7 @@
+let selection = [];
+
+function selected(chkBox) { selection.push(chkBox.id); }
+
 var xzhu = (function(md) {
   md.data = {
     photo_list: [
@@ -9,6 +13,7 @@ var xzhu = (function(md) {
       "images/006.jpg",
     ]
   };
+
 
   md.append_photo = function(arr) {
 
@@ -25,7 +30,8 @@ var xzhu = (function(md) {
     let isobox_end = "</div>";
 
     $.each(arr, function(idx, val) {
-      let input = "<input type=\"checkbox\" id=\"cb" + val + "\" />";
+      // let input = "<input type=\"checkbox\" name=\"hello\" id=\"cb" + val + "\" />";
+      let input = "<input type=\"checkbox\" id=\"cb" + val + "\" onclick=\"if(this.checked){selected(this)}\" />";
       let label_start = "<label for=\"cb" + val + "\">";
       let img = "<img src=\"" + val + "\" />";
       let label_end = "</label>";
@@ -38,7 +44,10 @@ var xzhu = (function(md) {
     $("#main-section").append(
       "<div class=\"iso-box photoshop branding col-md-12 col-sm-12\">" + thumb_start + "<a id=\"submit\" href=\"#\">Submit</a>" + thumb_end + isobox_end
     )
+
   }
+
+
 
   md.create_radar_chart = function() {
 
@@ -48,6 +57,16 @@ var xzhu = (function(md) {
     $("#submit").click(function() {
       $("#main-section").empty();
       // md.create_radar_chart();
+
+      if(typeof(Storage)!=="undefined")
+      {
+        window.localStorage.setItem("selection", JSON.stringify(selection));
+      }
+      else
+      {
+        console.log('error at sotrage at index');
+      }
+
       window.location.replace("chart.html");
     });
   };
@@ -62,4 +81,6 @@ var xzhu = (function(md) {
 
 $(document).ready(function(){
   xzhu.init();
+
+
 });
