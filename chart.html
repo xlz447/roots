@@ -11,6 +11,7 @@
 		<script src="js/jquery.js"></script>
 		<!-- D3.js -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 
 		<style>
 			body {
@@ -39,6 +40,8 @@
 		<div class="radarChart"></div>
 
 		<script src="js/radarChart.js"></script>
+		<script id="myJSON" type="text/javascript" src="data/images.js"></script>
+
 		<script>
 
 
@@ -93,16 +96,12 @@
 				let transparency = 0;
 				let roughness = 0;
 
-
-				// Replace ./data.json with your JSON feed
-				fetch('/data/images.json').then(response => {
-				  return response.json();
-				}).then(allImages => {
-				  // Work with JSON data here
+				// locally load from images.js
+				if (json) {
+					allImages = json.images;
 					let base = 0;
 					for (let image_id of image_ids) {
-						for (let image of allImages.images) {
-							console.log("here");
+						for (let image of allImages) {
 							if (image_id === image.image_id) {
 								base += 10;
 								brightness += image.tags.brightness;
@@ -149,11 +148,68 @@
 
 					//Call function to draw the Radar chart
 					RadarChart(".radarChart", data, radarChartOptions);
-					// return (data);
-				}).catch(err => {
-				  // Do something for an error here
-					console.log('fetch error');
-				});
+				}
+				else { // fetch from server
+					// Replace ./data.json with your JSON feed
+					fetch('/data/images.json').then(response => {
+					  return response.json();
+					}).then(allImages => {
+					  // Work with JSON data here
+						let base = 0;
+						for (let image_id of image_ids) {
+							for (let image of allImages.images) {
+								if (image_id === image.image_id) {
+									base += 10;
+									brightness += image.tags.brightness;
+									geometry += image.tags.geometry;
+									temperature += image.tags.temperature;
+									saturation += image.tags.saturation;
+									density += image.tags.density;
+									transparency += image.tags.transparency;
+									roughness += image.tags.roughness;
+								}
+							}
+						}
+
+						if (base === 0) {base = 1;}
+						const data =
+						[
+							[
+								{axis:"Brightness",value:brightness / base},
+								{axis:"Geometry",value:geometry / base},
+								{axis:"Temperature",value:temperature / base},
+								{axis:"Saturation",value:saturation / base},
+								{axis:"Density",value:density / base},
+								{axis:"Transparency",value:transparency / base},
+								{axis:"Roughness",value:roughness / base},
+							]
+						];
+
+						//////////////////////////////////////////////////////////////
+						//////////////////// Draw the Chart //////////////////////////
+						//////////////////////////////////////////////////////////////
+
+						var color = d3.scale.ordinal()
+							.range(["#EDC951","#CC333F","#00A0B0"]);
+
+						var radarChartOptions = {
+							w: width,
+							h: height,
+							margin: margin,
+							maxValue: 0.5,
+							levels: 5,
+							roundStrokes: true,
+							color: color
+						};
+
+						//Call function to draw the Radar chart
+						RadarChart(".radarChart", data, radarChartOptions);
+					}).catch(err => {
+					  // Do something for an error here
+						console.log('fetch error');
+					});
+				}
+
 			}
 
 			drawChart(imgs);
