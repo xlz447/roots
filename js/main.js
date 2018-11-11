@@ -5,12 +5,12 @@ function selected(chkBox) { selection.push(chkBox.id); }
 var xzhu = (function(md) {
   md.data = {
     photo_list: [
-      "images/001.jpg",
-      "images/002.jpg",
-      "images/003.jpg",
-      "images/004.jpg",
-      "images/005.jpg",
-      "images/006.jpg",
+      "images/1.jpg",
+      "images/2.jpg",
+      "images/3.jpg",
+      "images/4.jpg",
+      "images/5.jpg",
+      "images/6.jpg",
     ]
   };
 
