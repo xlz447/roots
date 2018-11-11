@@ -58,6 +58,7 @@ var xzhu = (function(md) {
       $("#main-section").empty();
       // md.create_radar_chart();
 
+      selection = Array.from(new Set(selection));
       if(typeof(Storage)!=="undefined")
       {
         window.localStorage.setItem("selection", JSON.stringify(selection));
