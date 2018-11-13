@@ -171,7 +171,7 @@
 
 			} else { // fetch from server
 				// Replace ./data.json with your JSON feed
-				fetch('/data/images.json').then(response => {
+				fetch('app/data/images.json').then(response => {
 					return response.json();
 				}).then(allImages => {
 					// Work with JSON data here
