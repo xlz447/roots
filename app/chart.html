@@ -89,12 +89,11 @@
 			}
 
 			let brightness = 0;
-			let geometry = 0;
-			let temperature = 0;
-			let saturation = 0;
 			let density = 0;
-			let transparency = 0;
-			let roughness = 0;
+			let rugosity = 0;
+			let roundness = 0;
+			let saturation = 0;
+
 
 			// locally load from images.js
 			if (json) {
@@ -104,13 +103,11 @@
 					for (let image of allImages) {
 						if (image_id === image.image_id) {
 							base += 1;
-							brightness += image.tags.brightness;
-							geometry += image.tags.geometry;
-							temperature += image.tags.temperature;
-							saturation += image.tags.saturation;
-							density += image.tags.density;
-							transparency += image.tags.transparency;
-							roughness += image.tags.roughness;
+							brightness += image.tags.Brightness;
+							density += image.tags.Density;
+							rugosity += image.tags.Rugosity;
+							roundness += image.tags.Roundness;
+							saturation += image.tags.Saturation;
 						}
 					}
 				}
@@ -124,28 +121,20 @@
 							value: brightness / base
 						},
 						{
-							axis: "Geometry",
-							value: geometry / base
-						},
-						{
-							axis: "Temperature",
-							value: temperature / base
-						},
-						{
-							axis: "Saturation",
-							value: saturation / base
-						},
-						{
 							axis: "Density",
 							value: density / base
 						},
 						{
-							axis: "Transparency",
-							value: transparency / base
+							axis: "Rugosity",
+							value: rugosity / base
 						},
 						{
-							axis: "Roughness",
-							value: roughness / base
+							axis: "Roundness",
+							value: roundness / base
+						},
+						{
+							axis: "Saturation",
+							value: saturation / base
 						},
 					]
 				];
@@ -180,13 +169,11 @@
 						for (let image of allImages.images) {
 							if (image_id === image.image_id) {
 								base += 1;
-								brightness += image.tags.brightness;
-								geometry += image.tags.geometry;
-								temperature += image.tags.temperature;
-								saturation += image.tags.saturation;
-								density += image.tags.density;
-								transparency += image.tags.transparency;
-								roughness += image.tags.roughness;
+								brightness += image.tags.Brightness;
+								density += image.tags.Density;
+								rugosity += image.tags.Rugosity;
+								roundness += image.tags.Roundness;
+								saturation += image.tags.Saturation;
 							}
 						}
 					}
@@ -200,28 +187,20 @@
 								value: brightness / base
 							},
 							{
-								axis: "Geometry",
-								value: geometry / base
-							},
-							{
-								axis: "Temperature",
-								value: temperature / base
-							},
-							{
-								axis: "Saturation",
-								value: saturation / base
-							},
-							{
 								axis: "Density",
 								value: density / base
 							},
 							{
-								axis: "Transparency",
-								value: transparency / base
+								axis: "Rugosity",
+								value: rugosity / base
 							},
 							{
-								axis: "Roughness",
-								value: roughness / base
+								axis: "Roundness",
+								value: roundness / base
+							},
+							{
+								axis: "Saturation",
+								value: saturation / base
 							},
 						]
 					];
