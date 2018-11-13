@@ -3,15 +3,9 @@ let selection = [];
 function selected(chkBox) { selection.push(chkBox.id); }
 
 var xzhu = (function(md) {
+  
   md.data = {
-    photo_list: [
-      "images/1.jpg",
-      "images/2.jpg",
-      "images/3.jpg",
-      "images/4.jpg",
-      "images/5.jpg",
-      "images/6.jpg",
-    ]
+    photo_list: []
   };
 
 
@@ -44,7 +38,7 @@ var xzhu = (function(md) {
     $("#main-section").append(
       "<div class=\"iso-box photoshop branding col-md-12 col-sm-12\">" + thumb_start + "<a id=\"submit\" href=\"#\">Submit</a>" + thumb_end + isobox_end
     )
-
+    // $("#main-section").append("<div id=\"floater\">FLOATING BUTTON</div>")
   }
 
 
@@ -56,7 +50,6 @@ var xzhu = (function(md) {
   md.click_event = function() {
     $("#submit").click(function() {
       $("#main-section").empty();
-      // md.create_radar_chart();
 
       selection = Array.from(new Set(selection));
       if(typeof(Storage)!=="undefined")
@@ -73,6 +66,10 @@ var xzhu = (function(md) {
   };
 
   md.init = function() {
+    for (let i = 1, c = 60; i <= c; i++)
+    {
+      md.data.photo_list.push("images/" + i + ".jpg");
+    }
     md.append_photo(md.data.photo_list);
     md.click_event();
   };
@@ -80,8 +77,19 @@ var xzhu = (function(md) {
   return md;
 })(xzhu || {});
 
+$(window).scroll(function() {
+    var winScrollTop = $(window).scrollTop();
+    var winHeight = $(window).height();
+    var floaterHeight = $('#floater').outerHeight(true);
+    var fromBottom = 20;
+    var top = winScrollTop + winHeight - floaterHeight - fromBottom;
+  $('#floater').css({'top': top + 'px'});
+});
+
 $(document).ready(function(){
   xzhu.init();
 
 
 });
+
+
