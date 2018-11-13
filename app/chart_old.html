@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>vinograph</title>
+
+	<!-- Google fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+	<!-- D3.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+
+	<style>
+		body {
+				font-family: 'Open Sans', sans-serif;
+				font-size: 11px;
+				font-weight: 300;
+				fill: #242424;
+				text-align: center;
+				text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+				cursor: default;
+			}
+
+			.legend {
+				font-family: 'Raleway', sans-serif;
+				fill: #333333;
+			}
+
+			.tooltip {
+				fill: #333333;
+			}
+		</style>
+
+</head>
+
+<body>
+
+	<div class="radarChart"></div>
+
+	<script src="js/radarChart.js"></script>
+	<script id="myJSON" type="text/javascript" src="data/images.js"></script>
+
+	<script>
+		/* Retrieve selection from localStorage */
+		let imgs = [];
+		if (typeof(Storage) !== "undefined" && localStorage.selection) {
+			// let imgs = localStorage.selection;
+			selection = JSON.parse(window.localStorage.getItem("selection")); // Retrieving
+			for (let s of selection) {
+				let filename = s.split('/')[1];
+				let img_id = parseInt(filename.split('.')[0]);
+				imgs.push(img_id);
+			}
+		} else {
+			console.log('error at storage on chart');
+		}
+
+		/* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
+
+		//////////////////////////////////////////////////////////////
+		//////////////////////// Set-Up //////////////////////////////
+		//////////////////////////////////////////////////////////////
+
+		var margin = {
+				top: 100,
+				right: 100,
+				bottom: 100,
+				left: 100
+			},
+			width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+			height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+
+		//////////////////////////////////////////////////////////////
+		////////////////////////// Data //////////////////////////////
+		//////////////////////////////////////////////////////////////
+		// $.getJSON("/data/images.json", function(json) {
+		// 	console.log(json);
+		// });
+
+		function drawChart(image_ids) {
+
+			console.log(image_ids);
+
+			if (image_ids.length === 0) {
+				console.log('imgs is empty');
+			}
+
+			let brightness = 0;
+			let density = 0;
+			let rugosity = 0;
+			let roundness = 0;
+			let saturation = 0;
+
+
+			// locally load from images.js
+			if (json) {
+				allImages = json.images;
+				let base = 0;
+				for (let image_id of image_ids) {
+					for (let image of allImages) {
+						if (image_id === image.image_id) {
+							base += 1;
+							brightness += image.tags.Brightness;
+							density += image.tags.Density;
+							rugosity += image.tags.Rugosity;
+							roundness += image.tags.Roundness;
+							saturation += image.tags.Saturation;
+						}
+					}
+				}
+
+				if (base === 0) {
+					base = 1;
+				}
+				const data = [
+					[{
+							axis: "Brightness",
+							value: brightness / base
+						},
+						{
+							axis: "Density",
+							value: density / base
+						},
+						{
+							axis: "Rugosity",
+							value: rugosity / base
+						},
+						{
+							axis: "Roundness",
+							value: roundness / base
+						},
+						{
+							axis: "Saturation",
+							value: saturation / base
+						},
+					]
+				];
+
+				//////////////////////////////////////////////////////////////
+				//////////////////// Draw the Chart //////////////////////////
+				//////////////////////////////////////////////////////////////
+
+				var color = d3.scale.ordinal()
+					.range(["68545d"]);
+
+				var radarChartOptions = {
+					w: width,
+					h: height,
+					margin: margin,
+					maxValue: 0.5,
+					levels: 5,
+					roundStrokes: true,
+					color: color
+				};
+				//Call function to draw the Radar chart
+				RadarChart(".radarChart", data, radarChartOptions);
+
+			} else { // fetch from server
+				// Replace ./data.json with your JSON feed
+				fetch('app/data/images.json').then(response => {
+					return response.json();
+				}).then(allImages => {
+					// Work with JSON data here
+					let base = 0;
+					for (let image_id of image_ids) {
+						for (let image of allImages.images) {
+							if (image_id === image.image_id) {
+								base += 1;
+								brightness += image.tags.Brightness;
+								density += image.tags.Density;
+								rugosity += image.tags.Rugosity;
+								roundness += image.tags.Roundness;
+								saturation += image.tags.Saturation;
+							}
+						}
+					}
+
+					if (base === 0) {
+						base = 1;
+					}
+					const data = [
+						[{
+								axis: "Brightness",
+								value: brightness / base
+							},
+							{
+								axis: "Density",
+								value: density / base
+							},
+							{
+								axis: "Rugosity",
+								value: rugosity / base
+							},
+							{
+								axis: "Roundness",
+								value: roundness / base
+							},
+							{
+								axis: "Saturation",
+								value: saturation / base
+							},
+						]
+					];
+
+
+					//////////////////////////////////////////////////////////////
+					//////////////////// Draw the Chart //////////////////////////
+					//////////////////////////////////////////////////////////////
+
+					var color = d3.scale.ordinal()
+						.range(["#EDC951", "#CC333F", "#00A0B0"]);
+
+					var radarChartOptions = {
+						w: width,
+						h: height,
+						margin: margin,
+						maxValue: 0.5,
+						levels: 5,
+						roundStrokes: true,
+						color: color
+					};
+
+					//Call function to draw the Radar chart
+					RadarChart(".radarChart", data, radarChartOptions);
+				}).catch(err => {
+					// Do something for an error here
+					console.log('fetch error');
+				});
+			}
+
+		}
+
+		drawChart(imgs);
+	</script>
+
+</body>
+
+</html>
