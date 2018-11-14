@@ -3,9 +3,10 @@ var RadarChart = {
     containerClass: "radar-chart",
     w: 600,
     h: 600,
+    margin: { top: 50, right: 50, bottom: 50, left: 50 }, //The margins of the SVG
     factor: 0.95,
     factorLegend: 1,
-    levels: 3,
+    levels: 5, //How many levels or inner circles should there be drawn
     maxValue: 0,
     radians: 2 * Math.PI,
     color: d3.scale.category10(),
@@ -363,9 +364,14 @@ var RadarChart = {
     var chart = RadarChart.chart().config(options);
     var cfg = chart.config();
 
+    //Remove whatever chart with the same id/class was present before
     d3.select(id)
       .select("svg")
       .remove();
+
+    //Initiate the radar chart SVG
+    console.log(cfg.w);
+    console.log(cfg.w + cfg.margin.left + cfg.margin.right);
     d3.select(id)
       .append("svg")
       .attr("width", cfg.w)
