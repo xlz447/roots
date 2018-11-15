@@ -1,38 +1,72 @@
+<!-- http://bl.ocks.org/nbremer/6506614 -->
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Radar chart</title>
+  <title>vinograph</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="js/RadarChart.js"></script>
   <script id="myJSON" type="text/javascript" src="data/images.js"></script>
 
 	<style>
-		body {
+    header {
+      display: flex;
+      padding: 2.4em;
+      font-family: "georgia";
+      font-size: 1.5em;
+      color: white
+    }
+
+    header > div:nth-child(2) {
+      margin-left: auto;
+    }
+
+    #logo {
+        height: 50px;
+        width: 50px
+    }
+
+  	body {
 		  overflow: hidden;
 		  margin: 0;
 		  font-size: 14px;
 		  font-family: "Helvetica Neue", Helvetica;
+      background-color: #1e1e21;
 		}
 
 		#chart {
-		  position: absolute;
-		  top: 50px;
-		  left: 100px;
-		}
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    #button {
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+
+
 	</style>
   </head>
   <body>
+    <header>
+      <div>__________ <br><br> Here is your vinograph</div>
+      <div><img src="images/logo.png" id="logo"></div>
+    </header>
     <div id="body">
 	  <div id="chart"></div>
     </div>
-
+    <div id="button">
+      <button>Review my picture selection</button>
+      <button>Checkout my wine recommendation</button>
+    </div>
     <script>
 
     /* Retrieve selection from localStorage */
     let image_ids = [];
     if (typeof(Storage) !== "undefined" && localStorage.selection) {
-      // let imgs = localStorage.selection;
       selection = JSON.parse(window.localStorage.getItem("selection")); // Retrieving
       for (let s of selection) {
         let filename = s.split('/')[1];
@@ -105,60 +139,30 @@
       //////////////////////// Set-Up //////////////////////////////
       //////////////////////////////////////////////////////////////
 
-      var w = 500, h = 500;
+      var w = 300, h = 300;
 
-      var colorscale = d3.scale.category10();
-
-      //Legend titles
-      // var LegendOptions = ["Smartphone", "Tablet"];
-
-
+      // define 'list' of colors
+      var colorscale = d3.scale.ordinal().range(["68545d"]);
 
       //Options for the Radar chart, other than default
       var mycfg = {
         w: w,
         h: h,
+        opacityArea: 0.7,
         maxValue: 10,
         levels: 5,
-        ExtraWidthX: 300
+        TranslateX: 100,
+        TranslateY: 30,
+        ExtraWidthX: 200,
+        color: colorscale
       };
 
       //Call function to draw the Radar chart
       //Will expect that data is in %'s
       RadarChart.draw("#chart", data, mycfg);
 
-      ////////////////////////////////////////////
-      /////////// Initiate legend ////////////////
-      ////////////////////////////////////////////
-
-      var svg = d3
-        .select("#body")
-        .selectAll("svg")
-        .append("svg")
-        .attr("width", w + 300)
-        .attr("height", h);
-
-      //Create the title for the legend
-      var text = svg
-        .append("text")
-        .attr("class", "title")
-        .attr("transform", "translate(90,0)")
-        .attr("x", w - 70)
-        .attr("y", 10)
-        .attr("font-size", "12px")
-        .attr("fill", "#404040")
-        .text("What % of owners use a specific service in a week");
-
-      //Initiate Legend
-      var legend = svg
-        .append("g")
-        .attr("class", "legend")
-        .attr("height", 100)
-        .attr("width", 200)
-        .attr("transform", "translate(90,20)");
 
     }
-
 
 
 
