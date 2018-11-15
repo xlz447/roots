@@ -1,6 +1,6 @@
 <!-- http://bl.ocks.org/nbremer/6506614 -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>vinograph</title>
@@ -30,7 +30,7 @@
 		  overflow: hidden;
 		  margin: 0;
 		  font-size: 14px;
-		  font-family: "Helvetica Neue", Helvetica;
+		  font-family: "georgia";
       background-color: #1e1e21;
 		}
 
@@ -40,13 +40,24 @@
       justify-content: center
     }
 
-    #button {
+    .button {
+      font-family: "georgia";
+      background: transparent;
+      border: 0.02px solid white;
+      color: white;
+      padding: 5px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin:auto;
+    }
+
+    #buttons {
       display: flex;
       align-items: center;
       justify-content: center
     }
-
-
 
 	</style>
   </head>
@@ -58,9 +69,9 @@
     <div id="body">
 	  <div id="chart"></div>
     </div>
-    <div id="button">
-      <button>Review my picture selection</button>
-      <button>Checkout my wine recommendation</button>
+    <div id="buttons">
+      <button class="button" onclick="location.href='index.html'" type="button">Review my picture selection</button>
+      <button class="button" onclick="location.href='recommendation.html'" type="button">Checkout my wine recommendation</button>
     </div>
     <script>
 

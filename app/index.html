@@ -1,123 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>roots</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.waterwheelCarousel.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
-<head>
-	<!--
+    <link rel="stylesheet" href="css/main.css">
 
-Template 2082 Pure Mix
+    <style>
+      header {
+        display: flex;
+        padding: 2.4em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        font-family: "georgia";
+        font-size: 1.5em;
+        color: white
+      }
 
-http://www.tooplate.com/view/2082-pure-mix
-
--->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-
-	<!-- Site title
-   ================================================== -->
-	<title>roots</title>
-
-	<!-- Bootstrap CSS
-   ================================================== -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-
-	<!-- Animate CSS
-   ================================================== -->
-	<link rel="stylesheet" href="css/animate.min.css">
-
-	<!-- Font Icons CSS
-   ================================================== -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/ionicons.min.css">
-
-	<!-- Main CSS
-   ================================================== -->
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/main.css">
-
-	<!-- Google web font
-   ================================================== -->
-	<!-- <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'> -->
-	<!-- Add Firebase -->
-	<!-- Firebase App is always required and must be first -->
-	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
-
-	<!-- Add additional services that you want to use -->
-	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-firestore.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-functions.js"></script>
-
-	<!-- Comment out (or don't include) services that you don't want to use -->
-	<!-- <script src="/__/firebase/5.5.8/firebase-storage.js"></script> -->
-
-	<!-- <script src="/__/firebase/init.js"></script> -->
-	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyCHE4tbbs49OqbnSbM8tGy3GpZ5SGMb7uo",
-			authDomain: "roots-6e5b4.firebaseapp.com",
-			databaseURL: "https://roots-6e5b4.firebaseio.com",
-			projectId: "roots-6e5b4",
-			storageBucket: "roots-6e5b4.appspot.com",
-			messagingSenderId: "22491626355"
-		};
-		firebase.initializeApp(config);
-	</script>
-</head>
-
-<body>
+      header > div:nth-child(2) {
+        margin-left: auto;
+      }
 
 
-	<!-- Preloader section
-================================================== -->
-	<div class="preloader">
+  </style>
+  </head>
+  <body>
 
-		<div class="sk-spinner sk-spinner-pulse"></div>
-
-	</div>
-
-	<!-- Portfolio section
-================================================== -->
-	<section id="portfolio">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-md-12 col-sm-12">
-
-					<!-- iso section -->
-					<div class="iso-section wow fadeInUp" data-wow-delay="0s">
-						<!-- iso box section -->
-						<div class="iso-box-section wow fadeInUp" data-wow-delay="0s">
-							<div id="main-section" class="iso-box-wrapper col4-iso-box">
-
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-		</div>
-
-	</section>
-
-
-
-	<!-- Javascript
-================================================== -->
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/isotope.js"></script>
-	<script src="js/imagesloaded.min.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/custom.js"></script>
-	<script src="js/main.js"></script>
-
-</body>
-
+      <div class="center">
+        <header>
+          <div>__________ <br><br> Tell us about art, <br> we'll tell you about wine</div>
+          <div><img src="images/logo.png" id="logo"></div>
+        </header>
+        <!-- <div class= "topleft">
+          <h2>________</h2>
+          <h2>Tell us about art,</h2>
+          <h2>we'll tell you about wine</h2>
+        </div>
+        <div class= "topright">
+          <img src="images/logo.png" id="logo">
+        </div> -->
+        <div id="carousel">
+        </div>
+        <br>
+        <div class="submit-container">
+          <a id="submit" href="#">Submit</a>
+        </div>>
+    </div>
+  </body>
 </html>
