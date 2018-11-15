@@ -3,55 +3,19 @@ let selection = [];
 function selected(chkBox) { selection.push(chkBox.id); }
 
 var xzhu = (function(md) {
-  
   md.data = {
     photo_list: []
   };
 
-
-  md.append_photo = function(arr) {
-
-    // <div class="iso-box photoshop branding col-md-4 col-sm-6">
-    //   <div class="portfolio-thumb">
-    //      <input type="checkbox" id="cb1" />
-    //      <label for="cb1"><img src="images/portfolio-img1.jpg" />
-    //      </label>
-    //   </div>
-    // </div>
-    let isobox_start = "<div class=\"iso-box photoshop branding col-md-4 col-sm-6\">";
-    let thumb_start = "<div class=\"portfolio-thumb\">";
-    let thumb_end = "</div>";
-    let isobox_end = "</div>";
-
-    $.each(arr, function(idx, val) {
-      // let input = "<input type=\"checkbox\" name=\"hello\" id=\"cb" + val + "\" />";
-      let input = "<input type=\"checkbox\" id=\"cb" + val + "\" onclick=\"if(this.checked){selected(this)}\" />";
-      let label_start = "<label for=\"cb" + val + "\">";
-      let img = "<img src=\"" + val + "\" />";
-      let label_end = "</label>";
-
-      $("#main-section").append(
-        isobox_start + thumb_start + input + label_start + img + label_end + thumb_end + isobox_end
-      );
-    });
-
-    $("#main-section").append(
-      "<div class=\"iso-box photoshop branding col-md-12 col-sm-12\">" + thumb_start + "<a id=\"submit\" href=\"#\">Submit</a>" + thumb_end + isobox_end
-    )
-    // $("#main-section").append("<div id=\"floater\">FLOATING BUTTON</div>")
-  }
-
-
-
-  md.create_radar_chart = function() {
-
-  };
+  // md.create_radar_chart = function() {};
 
   md.click_event = function() {
     $("#submit").click(function() {
       $("#main-section").empty();
+      // md.create_radar_chart();
 
       selection = Array.from(new Set(selection));
+
       if(typeof(Storage)!=="undefined")
       {
         window.localStorage.setItem("selection", JSON.stringify(selection));
@@ -62,6 +26,123 @@ var xzhu = (function(md) {
       }
 
       window.location.replace("chart.html");
+
+    });
+  };
+
+  md.append_slide_photo = function(arr) {
+
+    let a_start = "<a href=\"#\">";
+    let a_end = "</a>";
+    $.each(arr, function(idx, val) {
+      let photo_src = val;
+      let input = `<input type="checkbox" id="cb_${photo_src}" onclick="if(this.checked){ selected(this) }"/>`;
+      let photo = `<label for="cb_${photo_src}"><img src="${photo_src}" id="img_${photo_src}"/>`;
+
+      $("#carousel").append(
+        a_start + input + photo + a_end
+      );
+    });
+  };
+
+  md.init_slide = function() {
+    var carousel = $("#carousel").waterwheelCarousel({
+      flankingItems: 3,
+      movingToCenter: function ($item) {
+        $('#callback-output').prepend('movingToCenter: ' + $item.attr('id') + '<br/>');
+      },
+      movedToCenter: function ($item) {
+        $('#callback-output').prepend('movedToCenter: ' + $item.attr('id') + '<br/>');
+      },
+      movingFromCenter: function ($item) {
+        $('#callback-output').prepend('movingFromCenter: ' + $item.attr('id') + '<br/>');
+      },
+      movedFromCenter: function ($item) {
+        $('#callback-output').prepend('movedFromCenter: ' + $item.attr('id') + '<br/>');
+      },
+      clickedCenter: function ($item) {
+        $('#callback-output').prepend('clickedCenter: ' + $item.attr('id') + '<br/>');
+      }
+    });
+
+    $('#prev').bind('click', function () {
+      carousel.prev();
+      return false
+    });
+
+    $('#next').bind('click', function () {
+      carousel.next();
+      return false;
+    });
+
+    // $('#reload').bind('click', function () {
+    //   newOptions = eval("(" + $('#newoptions').val() + ")");
+    //   carousel.reload(newOptions);
+    //   return false;
+    // });
+
+  };
+
+  md.able_submit = function(){
+    $("#submit").css({
+      "font-size": "3rem",
+      "text-decoration": "none",
+      "padding": "0 20px",
+      "background": "#1E1E20",
+      "color": "#fff",
+      "border-top": "solid 2px #fff",
+      "border-bottom": "solid 2px #fff",
+      "font-family": "'Source Sans Pro', sans-serif",
+      "font-style": "normal",
+      "font-weight": "300",
+      "transition-timing-function": "ease-in-out",
+      "-webkit-transition": "all 0.5s ease-in-out",
+      "pointer-events": "auto",
+      "cursor": "pointer"
+    });
+
+    $("#submit").mouseover(function() {
+      $("#submit").css({
+        "background": "#fff",
+        "color": "#1E1E20"
+      });
+    });
+    $("#submit").mouseout(function() {
+      $("#submit").css({
+        "background": "#1E1E20",
+        "color": "#fff"
+      });
+    });
+    console.log('submit');
+  };
+
+  md.disable_submit = function() {
+    $("#submit").css({
+      "font-size": "3rem",
+      "text-decoration": "none",
+      "padding": "0 20px",
+      "background": "#1E1E20",
+      "color": "#383840",
+      "border-top": "solid 2px #383840",
+      "border-bottom": "solid 2px #383840",
+      "font-family": "'Source Sans Pro', sans-serif",
+      "font-style": "normal",
+      "font-weight": "300",
+      "transition-timing-function": "ease-in-out",
+      "-webkit-transition": "all 0.5s ease-in-out",
+      "pointer-events": "none",
+      "cursor": "defult"
+    });
+  };
+
+  md.get_image = function() {
+    $( ":checkbox" ).click(function() {
+      let check = $('#carousel').find('input[type=checkbox]:checked').length;
+      // if (check > 4)
+      if (check > 0)
+        md.able_submit();
+      else
+        md.disable_submit();
     });
   };
 
@@ -70,26 +151,19 @@ var xzhu = (function(md) {
     {
       md.data.photo_list.push("images/" + i + ".jpg");
     }
-    md.append_photo(md.data.photo_list);
+
+    md.append_slide_photo(md.data.photo_list);
+    md.init_slide();
+    md.get_image();
+
     md.click_event();
+
   };
 
   return md;
 })(xzhu || {});
 
-$(window).scroll(function() {
-    var winScrollTop = $(window).scrollTop();
-    var winHeight = $(window).height();
-    var floaterHeight = $('#floater').outerHeight(true);
-    var fromBottom = 20;
-    var top = winScrollTop + winHeight - floaterHeight - fromBottom;
-  $('#floater').css({'top': top + 'px'});
-});
-
 $(document).ready(function(){
   xzhu.init();
-
-
+  // xzhu.click_event();
 });
-
-
