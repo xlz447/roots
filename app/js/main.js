@@ -1,6 +1,11 @@
 let selection = [];
 
-function selected(chkBox) { selection.push(chkBox.id); }
+function selected(chkBox) {
+  let filename = chkBox.id.split('/')[1];
+  let img_id = parseInt(filename.split('.')[0]);
+  selection.push(img_id);
+  console.log(selection);
+}
 
 var xzhu = (function(md) {
   md.data = {
@@ -15,6 +20,13 @@ var xzhu = (function(md) {
       // md.create_radar_chart();
 
       selection = Array.from(new Set(selection));
+
+      // let image_ids = [];
+      // for (let s of selection) {
+      //   let filename = s.split('/')[1];
+      //   let img_id = parseInt(filename.split('.')[0]);
+      //   image_ids.push(img_id);
+      // }
 
       if(typeof(Storage)!=="undefined")
       {
@@ -147,7 +159,12 @@ var xzhu = (function(md) {
   };
 
   md.init = function() {
-    for (let i = 1, c = 60; i <= c; i++)
+    let cheat = [123, 203, 205, 457, 458, 459, 460, 461, 18, 40,
+       43, 114, 391, 223, 227, 196, 44, 199, 200, 201, 221, 222,
+       24, 40, 29, 62, 168, 208, 73, 352, 401, 310, 80, 108, 199,
+       202, 204, 446, 456, 458]
+    // for (let i = 1, c = 60; i <= c; i++)
+    for (let i of cheat)
     {
       md.data.photo_list.push("images/" + i + ".jpg");
     }

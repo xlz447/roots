@@ -3,6 +3,7 @@
 
   <head>
     <title>recommendation</title>
+    <script id="myJSON" type="text/javascript" src="data/wines.js"></script>
 
     <style>
       header {
@@ -29,6 +30,22 @@
   		  font-family: "georgia";
         background-color: #1e1e21;
   		}
+
+      #recommendation-container {
+        color: white;
+        display: flex;
+        padding: 5em;
+        align-items: center;
+        justify-content: center;
+        margin: 3em;
+        flex-wrap: wrap;
+      }
+
+      #recommendation {
+        font-size: 1.3em;
+        padding: 2em;
+        flex: 1 1 0
+      }
     </style>
   </head>
 
@@ -37,6 +54,91 @@
       <div>__________ <br><br> Our wine recommendation for you</div>
       <div><img src="images/logo.png" id="logo"></div>
     </header>
+
+    <section id="recommendation-container">
+      <!-- <div id="recommendation"></div> -->
+    </section>
+
+    <script>
+      /* Retrieve selection from localStorage */
+      let selection = [];
+      if (typeof(Storage) !== "undefined" && localStorage.selection) {
+        selection = JSON.parse(window.localStorage.getItem("selection")); // Retrieving
+      } else {
+        console.log('error at storage on chart');
+      }
+      console.log("selections: " + selection);
+
+      let recommendation = [];
+      if (json)
+      {
+        for (let wine of json.wines) {
+          let count = 0;
+          for (let image of wine.images) {
+            for (let s of selection) {
+              if (image === s) {
+                // console.log("count");
+                count += 1;
+              }
+            }
+          }
+          if (count > 0) {
+            recommendation.push(wine);
+          }
+        }
+      }
+
+      console.log(recommendation);
+
+      fillRecommendationHTML = (recommendation) => {
+        const container = document.getElementById('recommendation-container');
+        const div = document.getElementById('recommendation');
+        recommendation.forEach(wine => {
+          container.appendChild(createRecommendationHTML(wine));
+        });
+        // container.appendChild(div);
+      }
+
+      createRecommendationHTML = (wine) => {
+        const div = document.createElement('div');
+        div.setAttribute('id', 'recommendation');
+        const name = document.createElement('p');
+        name.innerHTML = wine.bottle_name;
+        div.appendChild(name);
+
+        const year = document.createElement('p');
+        year.innerHTML = wine.bottle_year;
+        div.appendChild(year);
+
+        const label = document.createElement('p');
+        label.innerHTML = wine.bottle_label;
+        div.appendChild(label);
+
+        const tastingNotes = document.createElement('p');
+        tastingNotes.innerHTML = wine.tasting_notes;
+        div.appendChild(tastingNotes);
+
+        return div;
+      }
+
+
+      fillRecommendationHTML(recommendation);
+
+      // getRecommendation = function(arr) {
+      //
+      //   let start = "<div class="wine">";
+      //   let a_end = "</div>";
+      //   $.each(arr, function(idx, val) {
+      //
+      //
+      //     $("#carousel").append(
+      //       a_start + input + photo + a_end
+      //     );
+      //   });
+      // };
+
+    </script>
+
 
   </body>
 
