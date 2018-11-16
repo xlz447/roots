@@ -151,10 +151,12 @@ var xzhu = (function(md) {
   };
 
   md.init = function() {
-    let cheat = [123, 203, 205, 457, 458, 459, 460, 461, 18, 40,
-       43, 114, 391, 223, 227, 196, 44, 199, 200, 201, 221, 222,
-       24, 40, 29, 62, 168, 208, 73, 352, 401, 310, 80, 108, 199,
-       202, 204, 446, 456, 458]; // only include images related to wines
+    let cheat = [123, 203, 205, 457, 458, 459, 460, 461,
+                  18, 40, 43, 114, 391, 223, 227, 196,
+                  44, 199, 200, 201, 221, 222, 24, 40,
+                  10, 23, 230, 192, 454, 455, 198, 122,
+                  29, 62, 168, 208, 73, 352, 401, 310,
+                  80, 108, 199, 202, 204, 446, 456, 458]; // only include images related to wines
 
     cheat = Array.from(new Set(cheat)).sort(function(a, b){return a - b}); // 'shuffle' the images by simply sorting them
 
