@@ -151,7 +151,7 @@ var xzhu = (function(md) {
     $( ":checkbox" ).click(function() {
       let check = $('#carousel').find('input[type=checkbox]:checked').length;
       // if (check > 4)
-      if (check > 0)
+      if (check > 2)
         md.able_submit();
       else
         md.disable_submit();
@@ -162,7 +162,10 @@ var xzhu = (function(md) {
     let cheat = [123, 203, 205, 457, 458, 459, 460, 461, 18, 40,
        43, 114, 391, 223, 227, 196, 44, 199, 200, 201, 221, 222,
        24, 40, 29, 62, 168, 208, 73, 352, 401, 310, 80, 108, 199,
-       202, 204, 446, 456, 458]
+       202, 204, 446, 456, 458];
+
+    cheat = Array.from(new Set(cheat)).sort(function(a, b){return a - b}); // 'shuffle' the images by simply sorting them
+
     // for (let i = 1, c = 60; i <= c; i++)
     for (let i of cheat)
     {
