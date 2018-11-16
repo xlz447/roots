@@ -76,6 +76,11 @@
     <header>
       <div>__________ <br><br> Here is your vinograph</div>
       <div><img src="images/logo.png" id="logo"></div>
+      <script type="text/javascript"> //turns logo to redirect to "home", which is currently the image selection page
+        document.getElementById("logo").onclick = function() {
+          location.href = "index.html";
+        };
+      </script>
     </header>
     <div id="body">
 	  <div id="chart"></div>
