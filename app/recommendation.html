@@ -50,6 +50,11 @@
         /* padding-top: 0; */
         flex: 1 1 0
       }
+
+      #wineImg {
+        height: 300px;
+
+      }
     </style>
   </head>
 
@@ -110,17 +115,44 @@
       createRecommendationHTML = (wine) => {
         const div = document.createElement('div');
         div.setAttribute('id', 'recommendation');
+
+
+
+        let img_id = -1;
+
+        console.log(wine.bottle_label);
+
+        if (wine.bottle_label === 'Francis Coppola') {
+            img_id = 3;
+        } else if (wine.bottle_label === 'Elouan') {
+          img_id = 1;
+        } else if (wine.bottle_label === "Stag's Leap") {
+          img_id = 2;
+        }
+
+        console.log(img_id);
+        if (img_id !== -1) {
+          const image = document.createElement('img');
+          image.setAttribute('src', `images/wine${img_id}.png`);
+          image.setAttribute('id', 'wineImg');
+          div.appendChild(image);
+        }
+        const label = document.createElement('p');
+        label.innerHTML = wine.bottle_label;
+        div.appendChild(label);
+
         const name = document.createElement('p');
         name.innerHTML = wine.bottle_name;
         div.appendChild(name);
+
+        const vlabel = document.createElement('p');
+        vlabel.innerHTML = wine.variety.variety_label;
+        div.appendChild(vlabel);
 
         const year = document.createElement('p');
         year.innerHTML = wine.bottle_year;
         div.appendChild(year);
 
-        const label = document.createElement('p');
-        label.innerHTML = wine.bottle_label;
-        div.appendChild(label);
 
         const tastingNotes = document.createElement('p');
         tastingNotes.innerHTML = wine.tasting_notes;
