@@ -615,7 +615,7 @@
     });
 
     /**
-     * Navigation with touch, on mobile (can't test)
+     * Navigation with touch, on mobile
      */
     let startX, startY, endX, endY;
     window.addEventListener('touchstart', function(t) {
@@ -623,15 +623,16 @@
     });
     window.addEventListener('touchmove', function(t) {
       endX = t.touches[0].clientX;
+      t.preventDefault();
     });
     window.addEventListener('touchend', function(t) {
-      console.log("startX:" + startX);
-      console.log("endX:" + endX);
-      if (endX > startX && endX - startX > 150) {
+      // console.log("startX:" + startX);
+      // console.log("endX:" + endX);
+      if (endX > startX && endX - startX > 100) {
         autoPlay(true);
         options.autoPlay = 0;
         moveOnce('backward');
-      }else if (endX < startX && startX - endX > 150) {
+      }else if (endX < startX && startX - endX > 100) {
         autoPlay(true);
         options.autoPlay = 0;
         moveOnce('forward');

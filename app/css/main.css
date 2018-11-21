@@ -2,6 +2,7 @@ body {
   font-family:Arial;
   font-size:12px;
   background:#1E1E20;
+  overflow:hidden;
 }
 .example-desc {
   margin:3px 0;
