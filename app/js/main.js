@@ -89,7 +89,7 @@ var xzhu = (function(md) {
 
   md.able_submit = function(){
     $("#submit").css({
-      "font-size": "3rem",
+      "font-size": "2rem",
       "text-decoration": "none",
       "padding": "0 20px",
       "background": "#1E1E20",
@@ -117,12 +117,11 @@ var xzhu = (function(md) {
         "color": "#fff"
       });
     });
-    console.log('submit');
   };
 
   md.disable_submit = function() {
     $("#submit").css({
-      "font-size": "3rem",
+      "font-size": "2rem",
       "text-decoration": "none",
       "padding": "0 20px",
       "background": "#1E1E20",
@@ -141,13 +140,22 @@ var xzhu = (function(md) {
 
   md.get_image = function() {
     $( ":checkbox" ).click(function() {
-      let check = $('#carousel').find('input[type=checkbox]:checked').length;
-      // if (check > 4)
-      if (check > 2) // lower the barrier for demo
+      let checkedBoxes = $('#carousel').find('input[type=checkbox]:checked');
+      let numChecked = checkedBoxes.length;
+      if (numChecked > 2) // lower the barrier for demo
         md.able_submit();
       else
         md.disable_submit();
-    });
+      let i = 0;
+      for (; i < numChecked; i++)
+      {
+          document.getElementById("tn-" + i).src=checkedBoxes[i].id.substr(3);
+      }
+      for (; i < 5; i++)
+      {
+          document.getElementById("tn-" + i).src="images/thumbnail-empty.jpg";
+      }
+      });
   };
 
   md.init = function() {
@@ -160,7 +168,6 @@ var xzhu = (function(md) {
 
     cheat = Array.from(new Set(cheat)).sort(function(a, b){return a - b}); // 'shuffle' the images by simply sorting them
 
-    // for (let i = 1, c = 60; i <= c; i++)
     for (let i of cheat)
     {
       md.data.photo_list.push("images/" + i + ".jpg");
@@ -171,7 +178,6 @@ var xzhu = (function(md) {
     md.get_image();
 
     md.click_event();
-
   };
 
   return md;

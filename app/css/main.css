@@ -12,7 +12,7 @@ body {
   width:100vw;
   border:1px solid #222;
   /* height:80vh; */
-  height: 70vh;
+  height: 60vh;
   position:relative;
   clear:both;
   overflow:hidden;
@@ -69,7 +69,6 @@ label img {
   padding: 10px;
 }
 .center {
-  /* position: absolute; */
   top: 10%;
   left: 0%;
   background:#1E1E20;
@@ -97,20 +96,34 @@ h2 {
 #logo {
   height:50px;
   width: 50px;
+  cursor: pointer;
 }
+
+.thumbnails-container
+{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin:0 auto;
+  width: 294px;
+}
+
+.thumbnail-img
+{
+  max-height: 50px;
+  max-width: 50px;
+  margin: 0px;
+  padding: 3px;
+}
+
 .submit-container {
-  /* position: absolute; */
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto;
-  /* left: 40%; */
-  /* bottom: 5%; */
   width: 20vw;
-  /* text-align: center; */
 }
 #submit {
-  font-size: 3rem;
+  font-size: 2rem;
   text-decoration: none;
   padding: 0 20px;
   background: #1E1E20;
