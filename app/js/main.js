@@ -185,8 +185,10 @@ var xzhu = (function(md) {
     $(":checkbox").click(function() {
       let checkedBoxes = $("#carousel").find("input[type=checkbox]:checked");
       let numChecked = checkedBoxes.length;
-      if (numChecked > 4) md.able_submit();
-      else md.disable_submit();
+      if (numChecked > 4) 
+        md.able_submit();
+      else 
+        md.disable_submit();
       setthumbnail(numChecked, checkedBoxes);
       disableenablecb();
     });
@@ -215,8 +217,15 @@ var xzhu = (function(md) {
         let numChecked = checkedBoxes.length;
         setthumbnail(numChecked, checkedBoxes);
         if ($("input.mycb").filter(":checked").length == 5)
+        {
           $("input.mycb:not(:checked)").attr("disabled", "disabled");
-        else $("input.mycb").removeAttr("disabled");
+          md.able_submit();
+        }
+        else
+        {
+          $("input.mycb").removeAttr("disabled");
+          md.disable_submit();
+        }
       }
     });
   };
