@@ -4,20 +4,19 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>roots</title>
   <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="js/jquery.waterwheelCarousel.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
-
+  <script type="text/javascript" src="js/jquery.waterwheelCarousel.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,400" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-
   <style>
   header {
     display: flex;
     padding: 2.4em;
     padding-top: 1em;
-    padding-bottom: 1em;
+    padding-bottom: 10em;
     font-family: "georgia";
     font-size: 1.5em;
-    color: white
+    background:#fdfefc;
   }
 
   header > div:nth-child(2) {
@@ -31,17 +30,37 @@
 
   <div class="center">
     <header>
-      <div>__________ <br><br> Tell us about art, <br> we'll tell you about wine</div>
-      <div><img src="images/logo.png" id="logo"></div>
+      <!-- <div>__________ <br><br> Tell us about art, <br> we'll tell you about wine</div>
+      <div><img src="images/logo.png" id="logo"></div> -->
     </header>
-        <div id="carousel">
-        </div>
         <div class="thumbnails-container">
-          <img class="thumbnail-img" id="tn-0" src="images/thumbnail-empty.jpg">
-          <img class="thumbnail-img" id="tn-1" src="images/thumbnail-empty.jpg">
-          <img class="thumbnail-img" id="tn-2" src="images/thumbnail-empty.jpg">
-          <img class="thumbnail-img" id="tn-3" src="images/thumbnail-empty.jpg">
-          <img class="thumbnail-img" id="tn-4" src="images/thumbnail-empty.jpg">
+          <div class="thumbnails-img-container">
+            <div class="img-container" id="ic-0">
+              <img class="thumbnail-img" id="tn-0" src="images/thumbnail-empty.jpg">
+            </div>
+          </div>
+          <div class="thumbnails-img-container">
+            <div class="img-container" id="ic-1">
+              <img class="thumbnail-img" id="tn-1" src="images/thumbnail-empty.jpg">
+            </div>
+          </div>
+          <div class="thumbnails-img-container">
+            <div class="img-container" id="ic-2">
+              <img class="thumbnail-img" id="tn-2" src="images/thumbnail-empty.jpg">
+            </div>
+          </div>
+          <div class="thumbnails-img-container">
+            <div class="img-container" id="ic-3">
+              <img class="thumbnail-img" id="tn-3" src="images/thumbnail-empty.jpg">
+            </div>
+          </div>
+          <div class="thumbnails-img-container">
+            <div class="img-container" id="ic-4">
+              <img class="thumbnail-img" id="tn-4" src="images/thumbnail-empty.jpg">
+            </div>
+          </div>
+        </div>
+        <div id="carousel">
         </div>
         <div class="submit-container">
           <a id="submit" href="#">Submit</a>
