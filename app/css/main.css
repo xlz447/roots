@@ -1,7 +1,15 @@
-html{
-
-  background-image: url("../images/228.jpg");
-  background-size: cover;
+html::after{
+  background-image: url("../images/bg.jpg");
+  /*background-size: cover; */
+  content: "";
+  /*background: url(image.jpg);*/
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; 
 }
 
 body {
@@ -17,7 +25,7 @@ body {
 
 #carousel {
   width: 100vw;
-  height: 65vh;
+  height: 600px;
   position: relative;
   clear: both;
   overflow: hidden;
@@ -107,11 +115,9 @@ h2 {
 .thumbnails-container {
   /*background: #fdfefc;*/
   position: relative;
-  padding-top: 20px;
-  padding-bottom: 20px;
   margin: 0 auto;
-  width: 294px;
-  height: 99px;
+  width: 500px;
+  height: 60px;
   text-align: center;
 }
 
@@ -130,7 +136,7 @@ h2 {
   display: none;
   position: absolute;
   margin: 0px;
-  left: 27px;
+  left: 42px;
   top: 3px;
   content: " ";
   height: 50px;
@@ -150,7 +156,8 @@ h2 {
 .thumbnail-img {
   max-height: 50px;
   max-width: 50px;
-  margin: 0px;
+  margin-left: 15px;
+  margin-right: 15px;
   padding: 3px;
   opacity: 0.9;
   transition: display 0.5s;
