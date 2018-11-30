@@ -21,8 +21,11 @@
       firebase.initializeApp(config);
     </script>
 
+    <!--bootstrap  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+
+    <!-- puts the little "R" logo on the browser tab -->
     <link rel="icon" href="./assets/favicon.ico">
     <style>
         .page-background {
@@ -47,6 +50,7 @@
             <p class="lead p-3">
                 Sign up below to be the first to get updates on our product!
             </p>
+            <!-- Email submission is here. The form "action" url is given from formspark, the service that is saving the inputed emails to a database  -->
             <form action="https://submit-form.com/e54b9f09-849a-4321-977b-c496529e6689" method="POST" class="form-inline justify-content-center">
               <input type="email" name="email" class="form-control form-control-lg mr-2" placeholder="Enter your email...">
               <button type="submit" class="btn btn-lg btn-primary">Sign up</button>
