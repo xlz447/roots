@@ -7,87 +7,73 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src="js/RadarChart.js"></script>
   <script id="myJSON" type="text/javascript" src="data/images.js"></script>
+  <script id="myJSON" type="text/javascript" src="data/wines.js"></script>
+
 
 	<style>
-    header {
-      display: flex;
-      padding: 2.4em;
-      font-family: "georgia";
-      font-size: 1.5em;
-      color: white
-    }
-
-    header > div:nth-child(2) {
-      margin-left: auto;
-    }
-
-    #logo {
-        height: 50px;
-        width: 50px
-    }
-
   	body {
 		  /* overflow: hidden; */ /* when used scroll doesn't work */
 		  margin: 0;
 		  font-size: 0.9em;
 		  font-family: "georgia";
-      background-color: #1e1e21;
+      background-image: url("./images/white.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
 		}
 
 		#chart {
+      padding-top: 12em;
       display: flex;
       align-items: center;
       justify-content: center
     }
 
-    .button {
-      font-family: "georgia";
-      background: transparent;
-      border: 1px solid white;
-      color: white;
-      padding: 8px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1em;
-      flex: 1 1 0;
+    #content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
 
-    .button#left {
-      margin-left: 15em;
-      margin-right: 3em;
-    }
-
-    .button#right {
-      margin-left: 3em;
-      margin-right: 15em;
-    }
-
-    #buttons {
+    #recommendation-container {
+      padding: 1em;
+      margin: 1em;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: nowrap;
+      /* flex-wrap: wrap; */
     }
 
+    #recommendation {
+      font-size: 0.9em;
+      /* padding: 1em; */
+      /* padding-top: 2em; */
+      /* flex: 1 1 0 */
+      /* padding: 1em; */
+      margin: 1em;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #wineImg {
+      height: 6em;
+    }
+
+    #label-container {
+      font-weight: bold;
+      /* margin: 2em; */
+      padding: 2em;
+    }
 	</style>
   </head>
   <body>
-    <header>
-      <div>__________ <br><br> Here is your vinograph</div>
-      <div><img src="images/logo.png" id="logo"></div>
-      <script type="text/javascript"> //turns logo to redirect to "home", which is currently the image selection page
-        document.getElementById("logo").onclick = function() {
-          location.href = "index.html";
-        };
-      </script>
-    </header>
     <div id="body">
-	  <div id="chart"></div>
+    <div id="content">
+	     <div id="chart"></div>
+       <div id="recommendation-container"></div>
     </div>
-    <div id="buttons">
-      <button class="button" id="left" onclick="location.href='index.html'" type="button">Review my picture selection</button>
-      <button class="button" id="right" onclick="location.href='recommendation.html'" type="button">Check out my wine recommendation</button>
     </div>
     <script>
 
@@ -112,8 +98,8 @@
     let saturation = 0;
 
     // locally load from images.js
-    if (json) {
-      allImages = json.images;
+    if (images) {
+      allImages = images.images;
       let base = 0;
       for (let image_id of selection) {
         for (let image of allImages) {
@@ -164,7 +150,7 @@
       var w = 300, h = 300;
 
       // define 'list' of colors
-      var colorscale = d3.scale.ordinal().range(["68545d"]);
+      var colorscale = d3.scale.ordinal().range(["7BCEC7"]);
 
       //Options for the Radar chart, other than default
       var mycfg = {
@@ -185,8 +171,93 @@
 
     }
 
+    </script>
+
+    <script>
+    let recommendation = [];
+    if (wines)
+    {
+      for (let wine of wines.wines) {
+        let count = 0;
+        for (let image of wine.images) {
+          for (let s of selection) {
+            if (image === s) {
+              count++;
+            }
+          }
+        }
+        if (count > 1) {
+          recommendation.push(wine);
+        }
+      }
+    }
+
+    console.log(recommendation);
+
+    fillRecommendationHTML = (recommendation) => {
+      const container = document.getElementById('recommendation-container');
+      const div = document.getElementById('recommendation');
+      recommendation.forEach(wine => {
+        container.appendChild(createRecommendationHTML(wine));
+      });
+    }
+
+    createRecommendationHTML = (wine) => {
+      const reommendation_div = document.createElement('div');
+      reommendation_div.setAttribute('id', 'recommendation');
+
+      let img_id = -1;
+
+      console.log(wine.bottle_label);
+
+      if (wine.bottle_label === 'Francis Coppola') {
+          img_id = 3;
+      } else if (wine.bottle_label === 'Elouan') {
+        img_id = 1;
+      } else if (wine.bottle_label === "Stag's Leap") {
+        img_id = 2;
+      }
+
+      console.log(img_id);
+      if (img_id !== -1) {
+        const image = document.createElement('img');
+        image.setAttribute('src', `images/wine${img_id}.png`);
+        image.setAttribute('id', 'wineImg');
+        reommendation_div.appendChild(image);
+      }
+
+      const div = document.createElement('p');
+      div.setAttribute('id', 'label-container');
+
+      reommendation_div.appendChild(div);
+
+      div.innerHTML = `${wine.bottle_label} ${wine.bottle_name} ${wine.variety.variety_label} ${wine.bottle_year}`
+
+      // const label = document.createElement('p');
+      // label.innerHTML = wine.bottle_label;
+      // div.appendChild(label);
+      //
+      // const name = document.createElement('p');
+      // name.innerHTML = wine.bottle_name;
+      // div.appendChild(name);
+      //
+      // const vlabel = document.createElement('p');
+      // vlabel.innerHTML = wine.variety.variety_label;
+      // div.appendChild(vlabel);
+      //
+      // const year = document.createElement('p');
+      // year.innerHTML = wine.bottle_year;
+      // div.appendChild(year);
 
 
+      const tastingNotes = document.createElement('p');
+      tastingNotes.innerHTML = wine.tasting_notes;
+      reommendation_div.appendChild(tastingNotes);
+
+      return reommendation_div;
+    }
+
+    fillRecommendationHTML(recommendation);
     </script>
 
   </body>
