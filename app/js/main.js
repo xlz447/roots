@@ -165,11 +165,17 @@ var xzhu = (function(md) {
 
       function setthumbnail(numChecked, checkedBoxes) {
         /* This part is for thumbnail*/
-        let twodivs = `<div class="thumbnails-img-container"><div class="img-container" id="ic-${numChecked-1}">`;
-        let imgclass = `<img class="thumbnail-img" id="tn-${numChecked-1}" src="${checkedBoxes[numChecked-1].id.substr(3)}"></div></div>`;
+        var i = 0;
+        for (; i < 4; i++)
+        {
+          if ($("#ic-"+i)[0]==undefined)
+            break;
+        }
+        let twodivs = `<div class="thumbnails-img-container"><div class="img-container" id="ic-${i}">`;
+        let imgclass = `<img class="thumbnail-img" id="tn-${i}" src="${checkedBoxes[numChecked-1].id.substr(3)}"></div></div>`;
         $(".thumbnails-container").append(twodivs + imgclass);
-        $("#ic-" + (numChecked-1)).show(0).animate({opacity:1});
-        enable_x(numChecked-1);
+        $("#ic-" + (i)).show(0).animate({opacity:1});
+        enable_x(i);
         deletetn();
       }
 
