@@ -74,9 +74,9 @@ var xzhu = (function(md) {
     $("#submit").css({
       "font-size": "1.5rem",
       "text-decoration": "none",
-      padding: "5px 20px",
-      background: "#fdfefc",
-      color: "#4c4d4d",
+      "padding": "5px 20px",
+      // "background": "#fdfefc",
+      "color": "#4c4d4d",
       "border-top": "solid 1.5px #4c4d4d",
       "border-bottom": "solid 1.5px #4c4d4d",
       "font-family": "Georgia, serif",
@@ -85,19 +85,19 @@ var xzhu = (function(md) {
       "transition-timing-function": "ease-in-out",
       "-webkit-transition": "all 0.5s ease-in-out",
       "pointer-events": "auto",
-      cursor: "pointer"
+      "cursor": "pointer"
     });
 
     $("#submit").mouseover(function() {
       $("#submit").css({
-        background: "#4c4d4d",
-        color: "#fdfefc"
+        "background": "#4c4d4d",
+        "color": "#fdfefc"
       });
     });
     $("#submit").mouseout(function() {
       $("#submit").css({
-        background: "#fdfefc",
-        color: "#4c4d4d"
+        "background": "none",
+        "color": "#4c4d4d"
       });
     });
   };
@@ -106,9 +106,9 @@ var xzhu = (function(md) {
     $("#submit").css({
       "font-size": "1.5rem",
       "text-decoration": "none",
-      padding: "5px 20px",
-      background: "#fdfefc",
-      color: "#e5e6e6",
+      "padding": "5px 20px",
+      // background: "#fdfefc",
+      "color": "#e5e6e6",
       "border-top": "solid 1.5px #e5e6e6",
       "border-bottom": "solid 1.5px #e5e6e6",
       "font-family": "Georgia, serif",
@@ -117,7 +117,7 @@ var xzhu = (function(md) {
       "transition-timing-function": "ease-in-out",
       "-webkit-transition": "all 0.5s ease-in-out",
       "pointer-events": "none",
-      cursor: "default"
+      "cursor": "default"
     });
   };
 
@@ -133,8 +133,7 @@ var xzhu = (function(md) {
     elem.style.cursor = "pointer";
     var styleElem = document.head.appendChild(document.createElement("style"));
     id = "#ic-" + id;
-    styleElem.innerHTML =
-      id + ":hover::before," + id + ":hover::after {display: block;}";
+    styleElem.innerHTML = id + ":hover::before," + id + ":hover::after {display: block;}";
   }
 
   function disable_x(id) {
@@ -146,17 +145,35 @@ var xzhu = (function(md) {
       id + ":hover::before," + id + ":hover::after {display: none;}";
   }
 
+  function deletetn(){
+    $(".thumbnail-img").bind("click", function() {
+      var str = $(this)[0].src;
+      str = "cb_images/" + str.substring(str.lastIndexOf("/") + 1);
+      if (!isNaN(str.substring(10, str.lastIndexOf(".")))) {
+        document.getElementById(str).checked = false;
+        $("#ic-" + $(this)[0].id.substring(3)).parent().remove();
+        if ($("input.mycb").filter(":checked").length == 5)
+        {
+          $("input.mycb:not(:checked)").attr("disabled", "disabled");
+          md.able_submit();
+        }
+        else
+        {
+          $("input.mycb").removeAttr("disabled");
+          md.disable_submit();
+        }
+      }
+    });
+  }
+
   function setthumbnail(numChecked, checkedBoxes) {
     /* This part is for thumbnail*/
-    let i = 0;
-    for (; i < numChecked; i++) {
-      document.getElementById("tn-" + i).src = checkedBoxes[i].id.substr(3);
-      enable_x(i);
-    }
-    for (; i < 5; i++) {
-      document.getElementById("tn-" + i).src = "images/thumbnail-empty.jpg";
-      disable_x(i);
-    }
+    let twodivs = `<div class="thumbnails-img-container"><div class="img-container" id="ic-${numChecked-1}">`;
+    let imgclass = `<img class="thumbnail-img" id="tn-${numChecked-1}" src="${checkedBoxes[numChecked-1].id.substr(3)}"></div></div>`;
+    $(".thumbnails-container").append(twodivs + imgclass);
+    $("#ic-" + (numChecked-1)).show(0).animate({opacity:1});
+    enable_x(numChecked-1);
+    deletetn();
     if (numChecked == 5) {
       let unchecked = $("#carousel").find("input[type=checkbox]:not(:checked)");
       for (var j = 0; j < unchecked.length; j++) {
@@ -171,10 +188,15 @@ var xzhu = (function(md) {
       }
     }
   }
-
+/*
+<div class="thumbnails-img-container">
+      <div class="img-container" id="ic-0">
+            <img class="thumbnail-img" id="tn-0" src="images/thumbnail-empty.jpg">
+      </div>
+</div>
+*/
   function disableenablecb() {
     $(".mycb").change(function() {
-      // console.log($('input.mycb').filter(':checked').length);
       if ($("input.mycb").filter(":checked").length == 5)
         $("input.mycb:not(:checked)").attr("disabled", "disabled");
       else $("input.mycb").removeAttr("disabled");
@@ -185,11 +207,18 @@ var xzhu = (function(md) {
     $(":checkbox").click(function() {
       let checkedBoxes = $("#carousel").find("input[type=checkbox]:checked");
       let numChecked = checkedBoxes.length;
-      if (numChecked > 4) 
+      if($(this).prop('checked') == true)
+        setthumbnail(numChecked, checkedBoxes);
+      else
+      {
+        let imgsrc = $(this)[0].id.substr(3);
+        let elem = $(".thumbnails-container").find('img[src$="' + imgsrc + '"]')
+        elem.parent().parent().remove();
+      }
+      if (numChecked > 4)
         md.able_submit();
       else 
         md.disable_submit();
-      setthumbnail(numChecked, checkedBoxes);
       disableenablecb();
     });
   };
@@ -207,26 +236,6 @@ var xzhu = (function(md) {
       }
 
       window.location.replace("chart.html");
-    });
-    $(".thumbnail-img").bind("click", function() {
-      var str = $(this)[0].src;
-      str = "cb_images/" + str.substring(str.lastIndexOf("/") + 1);
-      if (!isNaN(str.substring(10, str.lastIndexOf(".")))) {
-        document.getElementById(str).checked = false;
-        let checkedBoxes = $("#carousel").find("input[type=checkbox]:checked");
-        let numChecked = checkedBoxes.length;
-        setthumbnail(numChecked, checkedBoxes);
-        if ($("input.mycb").filter(":checked").length == 5)
-        {
-          $("input.mycb:not(:checked)").attr("disabled", "disabled");
-          md.able_submit();
-        }
-        else
-        {
-          $("input.mycb").removeAttr("disabled");
-          md.disable_submit();
-        }
-      }
     });
   };
 

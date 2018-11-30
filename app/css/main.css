@@ -1,7 +1,13 @@
+html{
+
+  background-image: url("../images/228.jpg");
+  background-size: cover;
+}
+
 body {
   font-family: Arial;
   font-size: 12px;
-  background: #fdfefc;
+  /*background: #fdfefc;*/
   overflow: hidden;
 }
 .example-desc {
@@ -15,7 +21,7 @@ body {
   position: relative;
   clear: both;
   overflow: hidden;
-  background: #fdfefc;
+  /*background: #fdfefc;*/
 }
 #carousel img {
   visibility: hidden; /* hide images until carousel can handle them */
@@ -70,7 +76,7 @@ label img {
 .center {
   top: 10%;
   left: 0%;
-  background: #fdfefc;
+  /*background: #fdfefc;*/
 }
 .topleft {
   z-index: 99;
@@ -99,12 +105,14 @@ h2 {
 }
 
 .thumbnails-container {
-  background: #fdfefc;
+  /*background: #fdfefc;*/
   position: relative;
   padding-top: 20px;
   padding-bottom: 20px;
   margin: 0 auto;
   width: 294px;
+  height: 99px;
+  text-align: center;
 }
 
 .thumbnails-img-container {
@@ -113,7 +121,9 @@ h2 {
 }
 
 .img-container {
-  display: inline-block;
+  display: none;
+  opacity: 0;
+  transition: display 0.5s;
 }
 .img-container:hover::before,
 .img-container:hover::after {
@@ -143,6 +153,7 @@ h2 {
   margin: 0px;
   padding: 3px;
   opacity: 0.9;
+  transition: display 0.5s;
 }
 
 .submit-container {
@@ -156,7 +167,7 @@ h2 {
   font-size: 1.5rem;
   text-decoration: none;
   padding: 5px 20px;
-  background: #fdfefc;
+  /*background: #fdfefc;*/
   color: #e5e6e6;
   border-top: solid 1.5px #e5e6e6;
   border-bottom: solid 1.5px #e5e6e6;
