@@ -1,4 +1,4 @@
-let json = {
+let wines = {
   "wines": [
     {
       "bottle_id": "001",
