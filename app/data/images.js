@@ -1,4 +1,4 @@
-let json = {
+let images = {
   "images": [
     {
       "image_id": 1,

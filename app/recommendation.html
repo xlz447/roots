@@ -1,172 +1,276 @@
+<!-- http://bl.ocks.org/nbremer/6506614 -->
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <title>recommendation</title>
-    <script id="myJSON" type="text/javascript" src="data/wines.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>vinograph</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="js/RadarChart.js"></script>
+  <script id="myJSON" type="text/javascript" src="data/images.js"></script>
+  <script id="myJSON" type="text/javascript" src="data/wines.js"></script>
 
-    <style>
-      header {
-        display: flex;
-        padding: 2.4em;
-        padding-bottom: 1em;
-        font-family: "georgia";
-        font-size: 1.5em;
-        color: white
-      }
 
-      header > div:nth-child(2) {
-        margin-left: auto;
-      }
+	<style>
+  	body {
+		  /* overflow: hidden; */ /* when used scroll doesn't work */
+		  margin: 0;
+		  font-size: 0.9em;
+		  font-family: "georgia";
+      background-image: url("./images/white.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+		}
 
-      #logo {
-          height: 50px;
-          width: 50px
-      }
+		#chart {
+      padding-top: 12em;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
 
-    	body {
-  		  /* overflow: hidden; */
-  		  margin: 0;
-  		  font-size: 1em;
-  		  font-family: "georgia";
-        background-color: #1e1e21;
-  		}
+    #content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 
-      #recommendation-container {
-        color: white;
-        display: flex;
-        padding: 1em;
-        padding-top: 0;
-        align-items: center;
-        justify-content: center;
-        margin: 1.2em;
-        /* margin-top: 0; */
-        flex-wrap: wrap;
-      }
+    #recommendation-container {
+      padding: 1em;
+      margin: 1em;
+      margin-top: 8em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-      #recommendation {
-        font-size: 0.9em;
-        padding: 1.5em;
-        /* padding-top: 0; */
-        flex: 1 1 0
-      }
+    #recommendation {
+      font-size: 1em;
+      margin: 1em;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 
-      #wineImg {
-        height: 300px;
+    #wineImg {
+      height: 8em;
+    }
 
-      }
-    </style>
+    #label-container {
+      font-weight: bold;
+      padding: 2em;
+      float: left;
+      white-space: nowrap;
+    }
+
+
+    hr {
+      width: 96%;
+      background-color: grey;
+    }
+
+    #button {
+      color: #7bcec7;
+      font-family: "Avenir";
+      /* font-weight: bold; */
+      font-size: 1.5em;
+      background: transparent;
+      border: 0;
+    }
+
+	</style>
   </head>
-
   <body>
-    <header>
-      <div>__________ <br><br> Our wine recommendation for you</div>
-      <div><img src="images/logo.png" id="logo"></div>
-      <script type="text/javascript">
-        document.getElementById("logo").onclick = function() {
-          location.href = "index.html";
-        };
-      </script>
-
-    </header>
-
-    <section id="recommendation-container">
-      <!-- <div id="recommendation"></div> -->
-    </section>
-
+    <div id="body">
+    <div id="content">
+	     <div id="chart"></div>
+       <div id="recommendation-container"></div>
+    </div>
+    </div>
     <script>
-      /* Retrieve selection from localStorage */
-      let selection = [];
-      if (typeof(Storage) !== "undefined" && localStorage.selection) {
-        selection = JSON.parse(window.localStorage.getItem("selection")); // Retrieving
-      } else {
-        console.log('error at storage on chart');
-      }
-      console.log("selections: " + selection);
 
-      let recommendation = [];
-      if (json)
-      {
-        for (let wine of json.wines) {
-          let count = 0;
-          for (let image of wine.images) {
-            for (let s of selection) {
-              if (image === s) {
-                count++;
-              }
+    /* Retrieve selection from localStorage */
+    let selection = [];
+    if (typeof(Storage) !== "undefined" && localStorage.selection) {
+      selection = JSON.parse(window.localStorage.getItem("selection")); // Retrieving
+    } else {
+      console.log('error at storage on chart');
+    }
+
+    // console.log(selection);
+
+    if (selection.length === 0) {
+      console.log('selection is empty');
+    }
+
+    let brightness = 0;
+    let density = 0;
+    let rugosity = 0;
+    let roundness = 0;
+    let saturation = 0;
+
+    // locally load from images.js
+    if (images) {
+      allImages = images.images;
+      let base = 0;
+      for (let image_id of selection) {
+        for (let image of allImages) {
+          if (image_id === image.image_id) {
+            base += 1;
+            brightness += image.tags.Brightness;
+            density += image.tags.Density;
+            rugosity += image.tags.Rugosity;
+            roundness += image.tags.Roundness;
+            saturation += image.tags.Saturation;
+          }
+        }
+      }
+
+      if (base === 0) {
+        base = 1;
+      }
+
+      const data = [
+          [
+            {
+              axis: "Brightness",
+              value: brightness / base
+            },
+            {
+              axis: "Density",
+              value: density / base
+            },
+            {
+              axis: "Rugosity",
+              value: rugosity / base
+            },
+            {
+              axis: "Roundness",
+              value: roundness / base
+            },
+            {
+              axis: "Saturation",
+              value: saturation / base
             }
-          }
-          if (count > 0) {
-            recommendation.push(wine);
-          }
-        }
-      }
+          ]
+      ];
+      console.log(data);
+      /////////////////////////////////////////////////////////////
+      //////////////////////// Set-Up //////////////////////////////
+      //////////////////////////////////////////////////////////////
 
-      console.log(recommendation);
+      var w = 300, h = 300;
 
-      fillRecommendationHTML = (recommendation) => {
-        const container = document.getElementById('recommendation-container');
-        const div = document.getElementById('recommendation');
-        recommendation.forEach(wine => {
-          container.appendChild(createRecommendationHTML(wine));
-        });
-      }
+      // define 'list' of colors
+      var colorscale = d3.scale.ordinal().range(["7BCEC7"]);
 
-      createRecommendationHTML = (wine) => {
-        const div = document.createElement('div');
-        div.setAttribute('id', 'recommendation');
+      //Options for the Radar chart, other than default
+      var mycfg = {
+        w: w,
+        h: h,
+        opacityArea: 0.7,
+        maxValue: 10,
+        levels: 5,
+        TranslateX: 100,
+        TranslateY: 30,
+        ExtraWidthX: 200,
+        color: colorscale
+      };
 
-
-
-        let img_id = -1;
-
-        console.log(wine.bottle_label);
-
-        if (wine.bottle_label === 'Francis Coppola') {
-            img_id = 3;
-        } else if (wine.bottle_label === 'Elouan') {
-          img_id = 1;
-        } else if (wine.bottle_label === "Stag's Leap") {
-          img_id = 2;
-        }
-
-        console.log(img_id);
-        if (img_id !== -1) {
-          const image = document.createElement('img');
-          image.setAttribute('src', `images/wine${img_id}.png`);
-          image.setAttribute('id', 'wineImg');
-          div.appendChild(image);
-        }
-        const label = document.createElement('p');
-        label.innerHTML = wine.bottle_label;
-        div.appendChild(label);
-
-        const name = document.createElement('p');
-        name.innerHTML = wine.bottle_name;
-        div.appendChild(name);
-
-        const vlabel = document.createElement('p');
-        vlabel.innerHTML = wine.variety.variety_label;
-        div.appendChild(vlabel);
-
-        const year = document.createElement('p');
-        year.innerHTML = wine.bottle_year;
-        div.appendChild(year);
+      //Call function to draw the Radar chart
+      RadarChart.draw("#chart", data, mycfg);
 
 
-        const tastingNotes = document.createElement('p');
-        tastingNotes.innerHTML = wine.tasting_notes;
-        div.appendChild(tastingNotes);
-
-        return div;
-      }
-
-      fillRecommendationHTML(recommendation);
-
+    }
 
     </script>
 
+    <script>
+    let recommendation = [];
+    if (wines)
+    {
+      for (let wine of wines.wines) {
+        let count = 0;
+        for (let image of wine.images) {
+          for (let s of selection) {
+            if (image === s) {
+              count++;
+            }
+          }
+        }
+        if (count > 0) {
+          recommendation.push(wine);
+        }
+      }
+    }
+
+    console.log(recommendation);
+
+    fillRecommendationHTML = (recommendation) => {
+      const container = document.getElementById('recommendation-container');
+      // const div = document.getElementById('recommendation');
+      recommendation.forEach(wine => {
+        recommendation_node = createRecommendationHTML(wine);
+        if (recommendation_node) {
+          container.appendChild(createRecommendationHTML(wine));
+          container.appendChild(document.createElement('hr'));
+        }
+
+      });
+    }
+
+    createRecommendationHTML = (wine) => {
+
+
+      let img_id = -1;
+
+      console.log(wine.bottle_label);
+
+      if (wine.bottle_label === 'Francis Coppola') {
+        img_id = 3;
+      } else if (wine.bottle_label === 'Elouan') {
+        img_id = 1;
+      } else if (wine.bottle_label === "Stag's Leap") {
+        img_id = 2;
+      }
+
+      console.log(img_id);
+
+
+      if (img_id === 1 || img_id === 2 || img_id === 3) {
+
+        const recommendation_div = document.createElement('div');
+        recommendation_div.setAttribute('id', 'recommendation');
+
+        const image = document.createElement('img');
+        image.setAttribute('src', `images/wine${img_id}.png`);
+        image.setAttribute('id', 'wineImg');
+        recommendation_div.appendChild(image);
+
+        const div = document.createElement('p');
+        div.setAttribute('id', 'label-container');
+
+        recommendation_div.appendChild(div);
+
+        div.innerHTML = `${wine.bottle_label}<br>${wine.bottle_name}<br>${wine.variety.variety_label}<br>${wine.bottle_year}`
+
+        const tastingNotes = document.createElement('div');
+        tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button">Find it around you</button>`;
+        recommendation_div.appendChild(tastingNotes);
+
+        return recommendation_div;
+
+      }
+      else {
+        return ;
+      }
+
+    }
+
+    fillRecommendationHTML(recommendation);
+    </script>
 
   </body>
-
 </html>
