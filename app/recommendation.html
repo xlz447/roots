@@ -38,7 +38,7 @@
     #recommendation-container {
       padding: 1em;
       margin: 1em;
-      margin-top: 6em;
+      margin-top: 8em;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -46,7 +46,7 @@
     }
 
     #recommendation {
-      font-size: 0.9em;
+      font-size: 1em;
       margin: 1em;
       display: flex;
       flex-direction: row;
@@ -64,6 +64,22 @@
       float: left;
       white-space: nowrap;
     }
+
+
+    hr {
+      width: 96%;
+      background-color: grey;
+    }
+
+    #button {
+      color: #7bcec7;
+      font-family: "Avenir";
+      /* font-weight: bold; */
+      font-size: 1.5em;
+      background: transparent;
+      border: 0;
+    }
+
 	</style>
   </head>
   <body>
@@ -194,15 +210,19 @@
 
     fillRecommendationHTML = (recommendation) => {
       const container = document.getElementById('recommendation-container');
-      const div = document.getElementById('recommendation');
+      // const div = document.getElementById('recommendation');
       recommendation.forEach(wine => {
-        container.appendChild(createRecommendationHTML(wine));
+        recommendation_node = createRecommendationHTML(wine);
+        if (recommendation_node) {
+          container.appendChild(createRecommendationHTML(wine));
+          container.appendChild(document.createElement('hr'));
+        }
+
       });
     }
 
     createRecommendationHTML = (wine) => {
-      const reommendation_div = document.createElement('div');
-      reommendation_div.setAttribute('id', 'recommendation');
+
 
       let img_id = -1;
 
@@ -217,25 +237,36 @@
       }
 
       console.log(img_id);
+
+
       if (img_id === 1 || img_id === 2 || img_id === 3) {
+
+        const recommendation_div = document.createElement('div');
+        recommendation_div.setAttribute('id', 'recommendation');
+
         const image = document.createElement('img');
         image.setAttribute('src', `images/wine${img_id}.png`);
         image.setAttribute('id', 'wineImg');
-        reommendation_div.appendChild(image);
+        recommendation_div.appendChild(image);
 
         const div = document.createElement('p');
         div.setAttribute('id', 'label-container');
 
-        reommendation_div.appendChild(div);
+        recommendation_div.appendChild(div);
 
         div.innerHTML = `${wine.bottle_label}<br>${wine.bottle_name}<br>${wine.variety.variety_label}<br>${wine.bottle_year}`
 
-        const tastingNotes = document.createElement('p');
-        tastingNotes.innerHTML = wine.tasting_notes;
-        reommendation_div.appendChild(tastingNotes);
+        const tastingNotes = document.createElement('div');
+        tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button">Find it around you</button>`;
+        recommendation_div.appendChild(tastingNotes);
+
+        return recommendation_div;
+
+      }
+      else {
+        return ;
       }
 
-      return reommendation_div;
     }
 
     fillRecommendationHTML(recommendation);
