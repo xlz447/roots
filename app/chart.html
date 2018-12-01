@@ -9,32 +9,18 @@
   <script id="myJSON" type="text/javascript" src="data/images.js"></script>
 
 	<style>
-    header {
-      display: flex;
-      padding: 2.4em;
-      font-family: "georgia";
-      font-size: 1.5em;
-      color: white
-    }
-
-    header > div:nth-child(2) {
-      margin-left: auto;
-    }
-
-    #logo {
-        height: 50px;
-        width: 50px
-    }
-
-  	body {
-		  /* overflow: hidden; */ /* when used scroll doesn't work */
-		  margin: 0;
-		  font-size: 0.9em;
-		  font-family: "georgia";
-      background-color: #1e1e21;
-		}
+  body {
+    /* overflow: hidden; */ /* when used scroll doesn't work */
+    margin: 0;
+    font-size: 0.9em;
+    font-family: "georgia";
+    background-image: url("./images/white.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
 
 		#chart {
+      padding-top: 12em;
       display: flex;
       align-items: center;
       justify-content: center
@@ -43,8 +29,7 @@
     .button {
       font-family: "georgia";
       background: transparent;
-      border: 1px solid white;
-      color: white;
+      border: 1px solid;
       padding: 8px;
       text-align: center;
       text-decoration: none;
@@ -52,6 +37,7 @@
       font-size: 1em;
       flex: 1 1 0;
     }
+
 
     .button#left {
       margin-left: 15em;
@@ -73,15 +59,7 @@
 	</style>
   </head>
   <body>
-    <header>
-      <div>__________ <br><br> Here is your vinograph</div>
-      <div><img src="images/logo.png" id="logo"></div>
-      <script type="text/javascript"> //turns logo to redirect to "home", which is currently the image selection page
-        document.getElementById("logo").onclick = function() {
-          location.href = "index.html";
-        };
-      </script>
-    </header>
+
     <div id="body">
 	  <div id="chart"></div>
     </div>
@@ -112,8 +90,8 @@
     let saturation = 0;
 
     // locally load from images.js
-    if (json) {
-      allImages = json.images;
+    if (images) {
+      allImages = images.images;
       let base = 0;
       for (let image_id of selection) {
         for (let image of allImages) {
@@ -164,7 +142,7 @@
       var w = 300, h = 300;
 
       // define 'list' of colors
-      var colorscale = d3.scale.ordinal().range(["68545d"]);
+      var colorscale = d3.scale.ordinal().range(["7BCEC7"]);
 
       //Options for the Radar chart, other than default
       var mycfg = {
