@@ -62,7 +62,7 @@
 
   .bottom
   {
-    height:50vh;
+    height:40vh;
     width: 100%;
   }
   .bottom:after
@@ -88,4 +88,50 @@
     color: #fdfefc;
     padding-bottom: 10px;
     border-bottom: 1px solid #3dbeb3;
+  }
+
+  .subtitle
+  {
+    font-family: Georgia, serif;
+    font-size: 14pt;
+    color: #fdfefc;
+  }
+
+  #pricerange
+  {
+    color:#3dbeb3;
+    cursor: default;
+    background: none;
+    border: 0;
+    margin-top: 5vh;
+    font-family: Georgia, serif;
+    font-size: 30pt;
+    text-align: center;
+  }
+  #slider
+  {
+    margin-top: 5vh;
+    width: 60%;
+  }
+
+  /* HIDE RADIO */
+  [type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* IMAGE STYLES */
+  [type=radio] + img {
+    margin-top: 8vh;
+    cursor: pointer;
+  }
+
+  /* CHECKED STYLES */
+  [type=radio]:checked + img {
+      transition: transform 0.5s;
+      transform: scale(1.2);
+      box-shadow: 0 0 2px #3dbeb3;
+      border: 2px solid rgba(61, 190, 179, 0.6);
   }
