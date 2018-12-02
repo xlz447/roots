@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+}
+
+#logo {
+  width: 1em;
+  padding: 1.5em;
+}
+
+#nav-item {
+  font-family: "Georgia";
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.topnav {
+    height: 7em;
+    display: flex;
+    flex-direction: row;
+    background-color: #F2F2F2;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    color: grey;
+    text-align: center;
+    padding: 1em 1em;
+    text-decoration: none;
+    font-size: 0.7em;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}

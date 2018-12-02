@@ -3,86 +3,92 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>vinograph</title>
+    <title>vinograph</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
-	<script src="js/RadarChart.js"></script>
-  <script id="myJSON" type="text/javascript" src="data/images.js"></script>
-  <script id="myJSON" type="text/javascript" src="data/wines.js"></script>
+  	<script src="js/RadarChart.js"></script>
+    <script id="myJSON" type="text/javascript" src="data/images.js"></script>
+    <script id="myJSON" type="text/javascript" src="data/wines.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+  	<style>
+    	body {
+  		  /* overflow: hidden; */ /* when used scroll doesn't work */
+  		  margin: 0;
+  		  font-size: 0.9em;
+  		  font-family: "georgia";
+        background-image: url("./images/white.jpg");
+        background-size: 100%;
+        /* background-repeat: no-repeat; */
+  		}
+
+  		#chart {
+        padding-top: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      #content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #recommendation-container {
+        padding: 1em;
+        margin: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      #recommendation {
+        font-size: 1em;
+        margin: 1em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #wineImg {
+        height: 8em;
+      }
+
+      #label-container {
+        font-weight: bold;
+        padding: 2em;
+        float: left;
+        white-space: nowrap;
+      }
 
 
-	<style>
-  	body {
-		  /* overflow: hidden; */ /* when used scroll doesn't work */
-		  margin: 0;
-		  font-size: 0.9em;
-		  font-family: "georgia";
-      background-image: url("./images/white.jpg");
-      background-size: 100%;
-      background-repeat: no-repeat;
-		}
+      hr {
+        width: 96%;
+        background-color: grey;
+      }
 
-		#chart {
-      padding-top: 12em;
-      display: flex;
-      align-items: center;
-      justify-content: center
-    }
+      #button {
+        color: #7bcec7;
+        font-family: "Avenir";
+        /* font-weight: bold; */
+        font-size: 1.5em;
+        background: transparent;
+        border: 0;
+      }
 
-    #content {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #recommendation-container {
-      padding: 1em;
-      margin: 1em;
-      margin-top: 8em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    #recommendation {
-      font-size: 1em;
-      margin: 1em;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #wineImg {
-      height: 8em;
-    }
-
-    #label-container {
-      font-weight: bold;
-      padding: 2em;
-      float: left;
-      white-space: nowrap;
-    }
-
-
-    hr {
-      width: 96%;
-      background-color: grey;
-    }
-
-    #button {
-      color: #7bcec7;
-      font-family: "Avenir";
-      /* font-weight: bold; */
-      font-size: 1.5em;
-      background: transparent;
-      border: 0;
-    }
-
-	</style>
+  	</style>
   </head>
   <body>
+    <div class="topnav">
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo"></div>
+      <div id="nav-item">Your Wine Compass</div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+    </div>
+
     <div id="body">
     <div id="content">
 	     <div id="chart"></div>
