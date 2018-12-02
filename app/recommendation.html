@@ -16,7 +16,7 @@
     	body {
   		  /* overflow: hidden; */ /* when used scroll doesn't work */
   		  margin: 0;
-  		  font-size: 0.9em;
+  		  font-size: 0.8em;
   		  font-family: "georgia";
         background-image: url("./images/white.jpg");
         background-size: 100%;
@@ -25,39 +25,31 @@
   		}
 
   		#chart {
-        padding-top: 2em;
-        display: flex;
-        align-items: center;
-        justify-content: center
+        padding-top: 1em;
+        /* display: flex; */
+        /* align-items: center; */
+        /* justify-content: center */
       }
 
       #content {
         display: flex;
-        flex-direction: row;
+        /* flex-direction: row; */
         align-items: center;
-        justify-content: center;
       }
 
       #recommendation-container {
-        padding: 1em;
-        margin: 1em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+        padding-right: 1em;
+        margin-right: 1em;
+        display: table;
+        /* align-items: center;
+        justify-content: center; */
       }
 
       #recommendation {
         font-size: 1em;
         margin: 1em;
         display: flex;
-        flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-      }
-
-      .flex-item {
-        justify-content: space-between;
       }
 
       #wineImg {
@@ -65,8 +57,9 @@
       }
 
       #label-container {
+        width: 11em;
         font-weight: bold;
-        padding: 2em;
+        padding: 1em;
         float: left;
         white-space: nowrap;
       }
@@ -235,7 +228,6 @@
       recommendation_div.setAttribute('id', 'recommendation');
 
       const image_div = document.createElement('div');
-      image_div.setAttribute('class', 'flex-item');
       recommendation_div.appendChild(image_div);
       const image = document.createElement('img');
       image.setAttribute('src', `images/rootswinebottle.png`);
@@ -243,20 +235,16 @@
       image_div.appendChild(image);
 
       const labels_div = document.createElement('div');
-      labels_div.setAttribute('class', 'flex-item');
       recommendation_div.appendChild(labels_div);
       const labels = document.createElement('p');
       labels.setAttribute('id', 'label-container');
-      labels.setAttribute('class', 'flex-item');
       labels.innerHTML = `Roots<br>Cellar`
       labels_div.appendChild(labels);
 
       const createAccount_div = document.createElement('div');
-      createAccount_div.setAttribute('class', 'flex-item');
       recommendation_div.appendChild(createAccount_div);
       const createAccount = document.createElement('div');
-      createAccount.setAttribute('class', 'flex-item');
-      createAccount.innerHTML = `<button id="button">Create an account</button>`;
+      createAccount.innerHTML = `To access our special cellar, <a href="index.html">subscribe</a> to Roots Premium`;
       createAccount_div.appendChild(createAccount);
 
       container.appendChild(recommendation_div);
@@ -287,7 +275,6 @@
         recommendation_div.setAttribute('id', 'recommendation');
 
         const image_div = document.createElement('div');
-        image_div.setAttribute('class', 'flex-item');
         recommendation_div.appendChild(image_div);
         const image = document.createElement('img');
         image.setAttribute('src', `images/wine${img_id}.png`);
@@ -295,19 +282,15 @@
         image_div.appendChild(image);
 
         const labels_div = document.createElement('div');
-        labels_div.setAttribute('class', 'flex-item');
         recommendation_div.appendChild(labels_div);
         const labels = document.createElement('p');
         labels.setAttribute('id', 'label-container');
-        labels.setAttribute('class', 'flex-item');
         labels.innerHTML = `${wine.bottle_label}<br>${wine.bottle_name}<br>${wine.variety.variety_label}<br>${wine.bottle_year}`
         labels_div.appendChild(labels);
 
         const tastingNotes_div = document.createElement('div');
-        tastingNotes_div.setAttribute('class', 'flex-item');
         recommendation_div.appendChild(tastingNotes_div);
         const tastingNotes = document.createElement('div');
-        tastingNotes.setAttribute('class', 'flex-item');
         tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button">Find it around you</button>`;
         tastingNotes_div.appendChild(tastingNotes);
 
