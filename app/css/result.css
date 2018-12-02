@@ -1,6 +1,6 @@
   html::before {
     background-image: url("../images/bg.jpg");
-    background-size: contain;
+    background-size: cover;
     /*background-repeat: no-repeat;*/
     content: "";
     top: 0;
@@ -16,7 +16,7 @@
     font-weight: bold;
   }
   .empty{
-    height: 150px;
+    height: 8vh;
   }
   #submit {
   font-size: 1.5rem;

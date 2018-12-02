@@ -19,6 +19,7 @@
   		  font-family: "georgia";
         background-image: url("./images/white.jpg");
         background-size: 100%;
+        background-size: cover;
         /* background-repeat: no-repeat; */
   		}
 
@@ -51,7 +52,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+      }
+
+      .flex-item {
+        justify-content: space-between;
       }
 
       #wineImg {
@@ -225,6 +230,36 @@
         }
 
       });
+      const recommendation_div = document.createElement('div');
+      recommendation_div.setAttribute('id', 'recommendation');
+
+      const image_div = document.createElement('div');
+      image_div.setAttribute('class', 'flex-item');
+      recommendation_div.appendChild(image_div);
+      const image = document.createElement('img');
+      image.setAttribute('src', `images/rootswinebottle.png`);
+      image.setAttribute('id', 'wineImg');
+      image_div.appendChild(image);
+
+      const labels_div = document.createElement('div');
+      labels_div.setAttribute('class', 'flex-item');
+      recommendation_div.appendChild(labels_div);
+      const labels = document.createElement('p');
+      labels.setAttribute('id', 'label-container');
+      labels.setAttribute('class', 'flex-item');
+      labels.innerHTML = `Roots<br>Cellar`
+      labels_div.appendChild(labels);
+
+      const createAccount_div = document.createElement('div');
+      createAccount_div.setAttribute('class', 'flex-item');
+      recommendation_div.appendChild(createAccount_div);
+      const createAccount = document.createElement('div');
+      createAccount.setAttribute('class', 'flex-item');
+      createAccount.innerHTML = `<button id="button">Create an account</button>`;
+      createAccount_div.appendChild(createAccount);
+
+      container.appendChild(recommendation_div);
+
     }
 
     createRecommendationHTML = (wine) => {
@@ -250,21 +285,30 @@
         const recommendation_div = document.createElement('div');
         recommendation_div.setAttribute('id', 'recommendation');
 
+        const image_div = document.createElement('div');
+        image_div.setAttribute('class', 'flex-item');
+        recommendation_div.appendChild(image_div);
         const image = document.createElement('img');
         image.setAttribute('src', `images/wine${img_id}.png`);
         image.setAttribute('id', 'wineImg');
-        recommendation_div.appendChild(image);
+        image_div.appendChild(image);
 
-        const div = document.createElement('p');
-        div.setAttribute('id', 'label-container');
+        const labels_div = document.createElement('div');
+        labels_div.setAttribute('class', 'flex-item');
+        recommendation_div.appendChild(labels_div);
+        const labels = document.createElement('p');
+        labels.setAttribute('id', 'label-container');
+        labels.setAttribute('class', 'flex-item');
+        labels.innerHTML = `${wine.bottle_label}<br>${wine.bottle_name}<br>${wine.variety.variety_label}<br>${wine.bottle_year}`
+        labels_div.appendChild(labels);
 
-        recommendation_div.appendChild(div);
-
-        div.innerHTML = `${wine.bottle_label}<br>${wine.bottle_name}<br>${wine.variety.variety_label}<br>${wine.bottle_year}`
-
+        const tastingNotes_div = document.createElement('div');
+        tastingNotes_div.setAttribute('class', 'flex-item');
+        recommendation_div.appendChild(tastingNotes_div);
         const tastingNotes = document.createElement('div');
+        tastingNotes.setAttribute('class', 'flex-item');
         tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button">Find it around you</button>`;
-        recommendation_div.appendChild(tastingNotes);
+        tastingNotes_div.appendChild(tastingNotes);
 
         return recommendation_div;
 

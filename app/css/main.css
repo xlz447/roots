@@ -1,6 +1,6 @@
 html::after{
   background-image: url("../images/bg.jpg");
-  /*background-size: cover; */
+  background-size: cover; 
   content: "";
   /*background: url(image.jpg);*/
   opacity: 0.3;

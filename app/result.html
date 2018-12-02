@@ -53,13 +53,13 @@
      <div class= "col-12" style="height: 30vh; z-index: 0;">
       <div class="container" style="margin-top: 5vh;">
         <div class="row">
-          <div class="col-4 threetabs" id="food" style="font-size: 30pt">
+          <div class="col-4 threetabs" id="food" style="font-size: 20pt">
             FOOD
           </div>
-          <div class="col-4 threetabs" id="occasion">
+          <div class="col-4 threetabs" id="occasion" style="font-size: 14pt">
             OCCASION
           </div>
-          <div class="col-4 threetabs" id="price">
+          <div class="col-4 threetabs" id="price" style="font-size: 14pt">
             PRICE
           </div>
           <div class="col-12" id="foodcontent">
@@ -67,25 +67,25 @@
               <div class="col-3">
                 <label>
                   <input type="radio" name="foodradio" value="small">
-                  <img src="./images/fish.png" height="100" width="159">
+                  <img src="./images/fish.png" height="120">
                 </label>
               </div>
               <div class="col-3">
                 <label>
                   <input type="radio" name="foodradio" value="small">
-                  <img src="./images/sauces.png" height="100" width="116">
+                  <img src="./images/sauces.png" height="120">
                 </label>
               </div>
               <div class="col-3">
                 <label>
                   <input type="radio" name="foodradio" value="small">
-                  <img src="./images/dessert.png" height="126" width="100">
+                  <img src="./images/dessert.png" height="120">
                 </label>
               </div>
               <div class="col-3">
                 <label>
                   <input type="radio" name="foodradio" value="small">
-                  <img src="./images/meat.png" height="113" width="150">
+                  <img src="./images/meat.png" height="120">
                 </label>
               </div>
               <div class="col-3 subtitle">
@@ -107,25 +107,25 @@
               <div class="col-3">
                 <label>
                   <input type="radio" name="occasionradio" value="small">
-                  <img src="./images/party.png" height="150" width="150">
+                  <img src="./images/party.png" height="120">
                 </label>
               </div>
               <div class="col-3">
                 <label>
                   <input type="radio" name="occasionradio" value="small">
-                  <img src="./images/gift.png" height="150" width="150">
+                  <img src="./images/gift.png" height="120">
                 </label>
               </div>
               <div class="col-3">
                 <label>
                   <input type="radio" name="occasionradio" value="small">
-                  <img src="./images/formal.png" height="150" width="150">
+                  <img src="./images/formal.png" height="120">
                 </label>
               </div>
               <div class="col-3">
                 <label>
                   <input type="radio" name="occasionradio" value="small">
-                  <img src="./images/family.png" height="150" width="150">
+                  <img src="./images/family.png" height="120">
                 </label>
               </div>
               <div class="col-3 subtitle">
@@ -155,17 +155,17 @@
         </div>
       </div>
     </div>
-    <a id="submit" href="image.html">Submit</a>
+    <a id="submit" href="image.html" style="margin-top: 10vh;">Submit</a>
   </div>
 </div>
 </div>
 <script type="text/javascript">
   $(".threetabs").click(function()
   {
-    $("#food").css("font-size","20pt");
-    $("#occasion").css("font-size","20pt");
-    $("#price").css("font-size","20pt");
-    $("#" + this.id).css("font-size","30pt");
+    $("#food").css("font-size","14pt");
+    $("#occasion").css("font-size","14pt");
+    $("#price").css("font-size","14pt");
+    $("#" + this.id).css("font-size","20pt");
     if (this.id == "food")
     {
       $("#foodcontent").css("display","block");
