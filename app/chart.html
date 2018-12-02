@@ -3,62 +3,69 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>vinograph</title>
+    <title>vinograph</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
-	<script src="js/RadarChart.js"></script>
-  <script id="myJSON" type="text/javascript" src="data/images.js"></script>
+  	<script src="js/RadarChart.js"></script>
+    <script id="myJSON" type="text/javascript" src="data/images.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/navbar.css">
 
-	<style>
-  body {
-    /* overflow: hidden; */ /* when used scroll doesn't work */
-    margin: 0;
-    font-size: 0.9em;
-    font-family: "georgia";
-    background-image: url("./images/white.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
-
-		#chart {
-      padding-top: 12em;
-      display: flex;
-      align-items: center;
-      justify-content: center
-    }
-
-    .button {
+  	<style>
+    body {
+      /* overflow: hidden; */ /* when used scroll doesn't work */
+      margin: 0;
+      font-size: 0.9em;
       font-family: "georgia";
-      background: transparent;
-      border: 1px solid;
-      padding: 8px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 1em;
-      flex: 1 1 0;
+      background-image: url("./images/white.jpg");
+      background-size: 100%;
+      /* background-repeat: no-repeat; */
     }
 
+  		#chart {
+        padding-top: 12em;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
 
-    .button#left {
-      margin-left: 15em;
-      margin-right: 3em;
-    }
+      .button {
+        font-family: "georgia";
+        background: transparent;
+        border: 1px solid;
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        flex: 1 1 0;
+      }
 
-    .button#right {
-      margin-left: 3em;
-      margin-right: 15em;
-    }
 
-    #buttons {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
-    }
+      .button#left {
+        margin-left: 15em;
+        margin-right: 3em;
+      }
 
-	</style>
+      .button#right {
+        margin-left: 3em;
+        margin-right: 15em;
+      }
+
+      #buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+      }
+
+  	</style>
   </head>
   <body>
+    <div class="topnav">
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo"></div>
+      <div id="nav-item">Your Wine Compass</div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+    </div>
 
     <div id="body">
 	  <div id="chart"></div>
