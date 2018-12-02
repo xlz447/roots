@@ -3,22 +3,121 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style type="text/css">
     html::after {
-      background-image: url("./images/login.jpg");
+      background-image: url("./images/backgrounds-06.jpg");
       background-size: contain;
-      background-repeat: no-repeat;
+      /* background-repeat: no-repeat; */
       content: "";
+      /* margin-top: 130px; */
       top: 0;
       left: 0;
       bottom: 0;
       right: 0;
       position: absolute;
-      z-index: -1; 
+      z-index: -1;
     }
+
+    body {
+      margin: 0;
+    }
+
+    #logo {
+      width: 2em;
+      padding: 1.5em;
+    }
+
+    h1 {
+      font-family: "Georgia";
+    }
+    /* Add a black background color to the top navigation */
+    .topnav {
+        height: 7em;
+        display: flex;
+        flex-direction: row;
+        background-color: #F2F2F2;
+        overflow: hidden;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        color: grey;
+        text-align: center;
+        padding: 1em 1em;
+        text-decoration: none;
+        font-size: 1.1em;
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    input[type=text] {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid white;
+      margin: 3em;
+      margin-top: 7em;
+      margin-bottom: 0;
+      font-size: 1em;
+      font-family: "Avenir"
+    }
+
+    form {
+      text-align: center;
+      display: block;
+      padding-top: 4em;
+    }
+
+    #info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .signup-container {
+      display: block;
+      text-align: center;
+      margin-top: 3em;
+    }
+
+    #signup {
+      text-decoration: none;
+      color: white;
+      font-size: 1em;
+      font-family: "Avenir"
+
+    }
+
   </style>
 </head>
 <body>
-    <a href="survey.html" style="position:absolute;left:0px;right:0px;top:0px;bottom:0px;"></a>
+  <div class="topnav">
+    <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo"></div>
+    <div id="nav-item"><h1>Your Wine Compass</h1></div>
+    <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+  </div>
+
+    <form id="info">
+      <div>
+        <input type="text" name="firstname" placeholder="First name">
+        <input type="text" name="lastname" placeholder="Last name">
+      </div>
+      <div>
+        <input type="text" name="birthday" placeholder="Date of birth">
+        <input type="text" name="email" placeholder="Email">
+      </div>
+      <div>
+        <input type="text" name="password" placeholder="Password">
+        <input type="text" name="confirm" placeholder="Retype your password">
+      </div>
+    </form>
+    <div class="signup-container">
+      <a id="signup" href="survey.html">Sign up</a>
+    </div>
 </body>
 </html>
