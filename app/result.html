@@ -22,7 +22,14 @@
 </head>
 <body>
   <div class="topnav">
-    <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" href="#" style=""></div>
+    <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" href="#" style="">
+      <script>
+        // returns to home after clicking on logo.
+        document.getElementById("logo").onclick = function() {
+          window.location.href = "index.html";
+          };
+      </script>
+    </div>
     <div id="nav-item">Your Wine Compass</div>
     <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
   </div>
