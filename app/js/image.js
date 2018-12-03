@@ -119,30 +119,16 @@ var xzhu = (function(md) {
           });
       };
 
-      function enable_x(id) {
-        var elem = document.getElementById("ic-" + id);
-        elem.style.cursor = "pointer";
-        var styleElem = document.head.appendChild(document.createElement("style"));
-        id = "#ic-" + id;
-        styleElem.innerHTML = id + ":hover::before," + id + ":hover::after {display: block;}";
-      }
+      var checkedList = [];
 
-      function disable_x(id) {
-        var elem = document.getElementById("ic-" + id);
-        elem.style.cursor = "default";
-        var styleElem = document.head.appendChild(document.createElement("style"));
-        id = "#ic-" + id;
-        styleElem.innerHTML =
-        id + ":hover::before," + id + ":hover::after {display: none;}";
-      }
-
-      function deletetn(){
+      function deletetn(checkedList){
         $(".thumbnail-img").bind("click", function() {
           var str = $(this)[0].src;
           str = "cb_images/" + str.substring(str.lastIndexOf("/") + 1);
-          if (!isNaN(str.substring(10, str.lastIndexOf("."))))
+          if (checkedList.indexOf(str) != -1)
           {
             document.getElementById(str).checked = false;
+            checkedList.splice(checkedList.indexOf(str), 1);
             $("#ic-" + $(this)[0].id.substring(3)).parent().remove();
             if ($("input.mycb").filter(":checked").length == 5)
             {
@@ -161,18 +147,19 @@ var xzhu = (function(md) {
         });
       }
 
-      function setthumbnail(numChecked, checkedBoxes) {
+      function setthumbnail(checkedList) {
         /* This part is for thumbnail*/
-        //$('.thumbnails-container').empty();
-        for (var i = 0; i < checkedBoxes.length; i++)
+        var i = 0;
+        for (; i < 4; i++)
         {
-            let twodivs = `<div class="thumbnails-img-container"><div class="img-container" id="ic-${i}">`;
-            let imgclass = `<img class="thumbnail-img" id="tn-${i}" src="${checkedBoxes[i].id.substr(3)}"></div></div>`;
-            $(".thumbnails-container").append(twodivs + imgclass);
-            $("#ic-" + (i)).show(0).animate({opacity:1});
-            enable_x(i);
+          if ($("#ic-"+i)[0]==undefined)
+            break;
         }
-        deletetn();
+        let twodivs = `<div class="thumbnails-img-container"><div class="img-container" id="ic-${i}">`;
+        let imgclass = `<img class="thumbnail-img" id="tn-${i}" src="${checkedList[checkedList.length-1].substr(3)}"></div></div>`;
+        $(".thumbnails-container").append(twodivs + imgclass);
+        $("#ic-" + (i)).show(0).animate({opacity:1});
+        deletetn(checkedList);
       }
 
       function setcursor(numChecked){
@@ -201,16 +188,22 @@ var xzhu = (function(md) {
 
       md.get_image = function() {
         $(":checkbox").click(function() {
-          let checkedBoxes = $("#carousel").find("input[type=checkbox]:checked");
-          let numChecked = checkedBoxes.length;
-          if($(this).prop('checked') == true)
-            setthumbnail(numChecked, checkedBoxes);
+          if (checkedList.indexOf(this.id) == -1)
+          {
+            checkedList.push(this.id);
+            //add one to array and display
+            setthumbnail(checkedList);
+          }
           else
           {
+            //delete one
+            checkedList.splice(checkedList.indexOf(this.id), 1);
             let imgsrc = $(this)[0].id.substr(3);
             let elem = $(".thumbnails-container").find('img[src$="' + imgsrc + '"]')
             elem.parent().parent().remove();
           }
+          let checkedBoxes = $("#carousel").find("input[type=checkbox]:checked");
+          let numChecked = checkedBoxes.length;
           if (numChecked > 4)
             md.able_submit();
           else
@@ -231,7 +224,6 @@ var xzhu = (function(md) {
           } else {
             console.log("error at sotrage at index");
           }
-
           window.location.replace("chart.html");
         });
       };
