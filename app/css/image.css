@@ -132,7 +132,7 @@ h2 {
 }
 .img-container:hover::before,
 .img-container:hover::after {
-  display: none;
+  display: block;
   position: absolute;
   margin: 0px;
   left: 42px;
