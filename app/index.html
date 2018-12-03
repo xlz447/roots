@@ -7,64 +7,60 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/navbar.css">
   <style type="text/css">
-    html::after {
-      background-image: url("./images/backgrounds-06.jpg");
-      background-size: cover;
-      /* background-repeat: no-repeat; */
-      content: "";
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      position: absolute;
-      z-index: -1;
-    }
+  html {
+    background-image: url("./images/backgrounds-06.jpg");
+    background-repeat: no-repeat;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-size: cover;
+  }
 
+  input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    margin: 3em;
+    margin-top: 7em;
+    margin-bottom: 0;
+    font-size: 1em;
+    font-family: "Avenir"
+  }
 
-    input[type=text] {
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid white;
-      margin: 3em;
-      margin-top: 7em;
-      margin-bottom: 0;
-      font-size: 1em;
-      font-family: "Avenir"
-    }
+  form {
+    text-align: center;
+    display: block;
+  }
 
-    form {
-      text-align: center;
-      display: block;
-      padding-top: 4em;
-    }
+  #info {
+    display: flex;
+    flex-direction: column;
+  }
 
-    #info {
-      display: flex;
-      flex-direction: column;
-    }
+  .signup-container {
+    display: block;
+    text-align: center;
+    margin-top: 3em;
+  }
 
-    .signup-container {
-      display: block;
-      text-align: center;
-      margin-top: 3em;
-    }
+  #signup {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    font-family: "Avenir"
+  }
 
-    #signup {
-      text-decoration: none;
-      color: white;
-      font-size: 1em;
-      font-family: "Avenir"
-
-    }
-
-  </style>
+</style>
 </head>
 <body>
-  <div class="topnav">
-    <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo"></div>
-    <div id="nav-item">Your Wine Compass</div>
-    <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
-  </div>
+  <div>
+    <div class="topnav">
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo"></div>
+      <div id="nav-item">Your Wine Compass</div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+    </div>
 
     <form id="info">
       <div>
@@ -83,5 +79,8 @@
     <div class="signup-container">
       <a id="signup" href="survey.html">Sign up</a>
     </div>
+    <div style="height: 10vh;">
+    </div>
+  </div>
 </body>
 </html>
