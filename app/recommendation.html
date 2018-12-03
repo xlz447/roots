@@ -161,7 +161,7 @@
             }
           ]
       ];
-      console.log(data);
+      // console.log(data);
       /////////////////////////////////////////////////////////////
       //////////////////////// Set-Up //////////////////////////////
       //////////////////////////////////////////////////////////////
@@ -211,7 +211,7 @@
       }
     }
 
-    console.log(recommendation);
+    // console.log(recommendation);
 
     fillRecommendationHTML = (recommendation) => {
       const container = document.getElementById('recommendation-container');
@@ -244,7 +244,7 @@
       const createAccount_div = document.createElement('div');
       recommendation_div.appendChild(createAccount_div);
       const createAccount = document.createElement('div');
-      createAccount.innerHTML = `<p>To access our special cellar, subscribe to Roots Premium</p><button id="button">Create an account</button>`;
+      createAccount.innerHTML = `<p>To access our special cellar, subscribe to Roots Premium</p><button id="button" onclick="location.href='index.html'">Create an account</button>`;
       createAccount_div.appendChild(createAccount);
 
       container.appendChild(recommendation_div);
@@ -256,7 +256,7 @@
 
       let img_id = -1;
 
-      console.log(wine.bottle_label);
+      // console.log(wine.bottle_label);
 
       if (wine.bottle_label === 'Francis Coppola') {
         img_id = 3;
@@ -266,7 +266,7 @@
         img_id = 2;
       }
 
-      console.log(img_id);
+      // console.log(img_id);
 
 
       if (img_id === 1 || img_id === 2 || img_id === 3) {
