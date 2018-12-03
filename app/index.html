@@ -67,7 +67,14 @@
 <body>
   <div>
     <div class="topnav">
-      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo"></div>
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo">
+        <script>
+          // returns to home after clicking on logo.
+          document.getElementById("logo").onclick = function() {
+            window.location.href = "index.html";
+            };
+        </script>
+      </div>
       <div id="nav-item">Your Wine Compass</div>
       <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
     </div>
@@ -83,7 +90,7 @@
       </div>
       <div>
         <input type="text" name="password" placeholder="Password">
-        <input type="text" name="confirm" placeholder="Retype your password">
+        <input type="text" name="confirm" placeholder="Confirm your password">
       </div>
     </form>
     <div class="signup-container">
