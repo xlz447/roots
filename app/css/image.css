@@ -31,6 +31,8 @@ body {
 #carousel img {
   visibility: hidden; /* hide images until carousel can handle them */
   cursor: pointer; /* otherwise it's not as obvious items can be clicked */
+  height: 50vh;
+  width: 50vh;
 }
 
 .split-left {
