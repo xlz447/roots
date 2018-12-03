@@ -1,22 +1,13 @@
-  html::before {
-    background-image: url("../images/bg.jpg");
-    background-size: cover;
-    /*background-repeat: no-repeat;*/
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
+  body {
+    background-image: url("../images/bglight.png");
+    background-size: cover; 
+    background-repeat: no-repeat;
     z-index: -1;
   }
   .smavnir{
     font-family: 'Avenir Black', sans-serif;
     font-size: 20pt;
     font-weight: bold;
-  }
-  .empty{
-    height: 8vh;
   }
   #submit {
   font-size: 1.5rem;
@@ -62,7 +53,7 @@
 
   .bottom
   {
-    height:40vh;
+    height:45vh;
     width: 100%;
   }
   .bottom:after
@@ -106,12 +97,12 @@
     border: 0;
     margin-top: 5vh;
     font-family: Georgia, serif;
-    font-size: 30pt;
+    font-size: 24pt;
     text-align: center;
   }
   #slider
   {
-    margin-top: 5vh;
+    margin-top: 2vh;
     width: 60%;
   }
 
@@ -125,7 +116,7 @@
 
   /* IMAGE STYLES */
   [type=radio] + img {
-    margin-top: 8vh;
+    margin-top: 3vh;
     cursor: pointer;
   }
 
