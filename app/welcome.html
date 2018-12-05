@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Welcome back</title>
+  <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <style type="text/css">
+
+  body {
+    /* overflow: hidden; */ /* when used scroll doesn't work */
+    margin: 0;
+    font-size: 0.9em;
+    font-family: "georgia";
+    background-image: url("./images/backgrounds-06.jpg");
+    background-size: 100%;
+    background-size: cover;
+  }
+
+  .smavnir{
+    font-family: 'Avenir Black', sans-serif;
+    font-size: 12pt;
+    font-weight: lighter;
+    color:#fdfefc;
+  }
+
+  .bigwelcome{
+    font-family: Georgia;
+    font-size: 20pt;
+    font-weight: bold;
+    margin-top: 5vh;
+    padding-bottom: 25px;
+    color: #fdfefc;
+  }
+
+  .stardiv{
+    display: inline-block;
+  }
+
+  .starimg{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <div>
+    <div class="topnav">
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" style="cursor: pointer;">
+        <script>
+          // returns to home after clicking on logo.
+          document.getElementById("logo").onclick = function() {
+            window.location.href = "index.html";
+          };
+        </script>
+      </div>
+      <div id="nav-item">Your Wine Compass</div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+    </div>
+
+    <div style="text-align: center;">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="bigwelcome">Welcome back<br>Luke!</h1>
+        </div>
+        <div class="smavnir col-12" style="margin-bottom: 3vh;">
+          How did you like the Elouan Pinot Noir?
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4">
+          <div class="mt-3">
+            <div class="row" style="padding-left: 4vw; padding-right: 4vw;">
+              <div class="col stardiv">
+                <img src="images/onestarblueempty.png" class="starimg" id="star0">
+              </div>
+              <div class="col stardiv">
+                <img src="images/onestarblueempty.png" class="starimg" id="star1">
+              </div>
+              <div class="col stardiv">
+                <img src="images/onestarblueempty.png" class="starimg" id="star2">
+              </div>
+              <div class="col stardiv">
+                <img src="images/onestarblueempty.png" class="starimg" id="star3">
+              </div>
+              <div class="col stardiv">
+                <img src="images/onestarblueempty.png" class="starimg" id="star4">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-12" style="height:10vh;"></div>
+        <div class="smavnir col-12" style="margin-bottom: 3vh;">
+          <a href="#" style="text-decoration: none; color: inherit;">I have not tried it yet</a>
+        </div>
+    </div>
+
+    <div style="height: 10vh;">
+    </div>
+  </div>
+  <script type="text/javascript">
+    var stars = 0;
+    $(".starimg").click(function()
+    {
+      var maxid = parseInt(this.id.substr(4));
+      var i = 0;
+      for (; i <= maxid; i++)
+        $("#star" + i).attr("src", "images/onestarbluefull.png");
+      for (; i < 5; i++)
+        $("#star" + i).attr("src", "images/onestarblueempty.png");
+    });
+  </script>
+</body>
+</html>
