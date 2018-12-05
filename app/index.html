@@ -20,23 +20,19 @@
     background: transparent;
     border: none;
     border-bottom: 1px solid white;
-    margin: 3em;
-    margin-top: 7em;
+    margin: auto;
+    margin-top: 4em;
     margin-bottom: 0;
     font-size: 1em;
     font-family: "Avenir";
     color: white;
   }
 
-  form {
-    display: block;
-    padding: 5em;
-    text-align: center;
-  }
-
   #info {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .button-container {
@@ -48,7 +44,7 @@
   }
 
   #button {
-    padding: 1em;
+    padding: 0.5em;
     color: white;
     font-size: 1em;
     font-family: "Avenir"
@@ -60,24 +56,26 @@
   }
 
   #logo-img {
-    margin-top: 7em;
+    margin-top: 5em;
+    margin-bottom: 2.5em;
     text-align: center;
   }
 
   #logo-img img {
-    width: 20em;
+    width: 17em;
   }
 
   #outer {
+    padding-bottom: 5em;
     display: flex;
     justify-content: center;
   }
 
   #box {
-    margin-top: 8em;
+    margin-top: 3em;
     border: solid white 1px;
-    width: 48em;
-    height: 56em;
+    width: 36em;
+    height: 46em;
   }
 
 </style>
@@ -89,10 +87,10 @@
     <div id="logo-img"><img src="images/logo.png"></div>
 
     <form id="info">
-      <div>
+
         <input type="text" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
-      </div>
+
     </form>
     <div class="button-container">
       <div id="button"><a href="result.html">Login</a></div>
