@@ -45,6 +45,47 @@
     height: 40px;
     cursor: pointer;
   }
+
+  #submit {
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 5px 20px;
+  color: #fdfefc;
+  border-top: solid 1.5px #3dbeb3;
+  border-bottom: solid 1.5px #3dbeb3;
+  border-radius: 2px;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 200;
+  transition-timing-function: ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 20;
+  }
+  #submit:hover{
+    color:#fdfefc;
+    background:#3dbeb3;
+  }
+
+  .square{
+    border: solid 1px #3bdeb3;
+    height:20pt;
+    width: 20pt;
+    display: inline-block;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 7pt;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .fill{
+    background-color: #3bdeb3;
+  }
+  .too{
+    display: inline-block;
+    width: 127px;
+  }
 </style>
 </head>
 <body>
@@ -93,8 +134,35 @@
           </div>
         </div>
         <div class="col-4"></div>
-        <div class="col-12" style="height:10vh;"></div>
-        <div class="smavnir col-12" style="margin-bottom: 3vh;">
+        <div class="smavnir col-12 wrong" style="margin-top: 3vh; display: none;">
+          What went wrong ?
+        </div>
+        <div class="col-12 wrong" style="margin-top: 3vh; display: none">
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <div class="col square"></div>
+              <div class="col square"></div>
+              <div class="col square"></div>
+              <div class="col square"></div>
+              <div class="col square"></div>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-3"></div>
+            <div class="col-6">
+              <div class="col smavnir too">too sweet</div>
+              <div class="col smavnir too">too heavy</div>
+              <div class="col smavnir too">too bitter</div>
+              <div class="col smavnir too">too light</div>
+              <div class="col smavnir too">too rough</div>
+            </div>
+            <div class="col-3"></div>
+          </div>
+        </div>
+        <div class="col-12" id="sumbmitcol" style="margin-top: 3vh; opacity: 0; height: 36px;">
+          <a id="submit" href="image.html" >Submit</a>
+        </div>
+        <div class="smavnir col-12" id="havent" style="margin-top: 3vh; height: 36px;">
           <a href="#" style="text-decoration: none; color: inherit;">I have not tried it yet</a>
         </div>
     </div>
@@ -106,12 +174,28 @@
     var stars = 0;
     $(".starimg").click(function()
     {
-      var maxid = parseInt(this.id.substr(4));
+      stars = parseInt(this.id.substr(4)) + 1;
+      if (stars == 5)
+      {
+        console.log("show submit");
+        $(".wrong").css("display", "none");
+        $("#sumbmitcol").css("opacity", "1");
+      }
+      else
+      {
+        console.log("remove submit");
+        $(".wrong").css("display", "block");
+      }
       var i = 0;
-      for (; i <= maxid; i++)
+      for (; i < stars; i++)
         $("#star" + i).attr("src", "images/onestarbluefull.png");
-      for (; i < 5; i++)
+      for (; i <= 5; i++)
         $("#star" + i).attr("src", "images/onestarblueempty.png");
+    });
+    $(".square").click(function()
+    {
+      $(this).toggleClass("fill");
+      $("#sumbmitcol").css("opacity", "1");
     });
   </script>
 </body>
