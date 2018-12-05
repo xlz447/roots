@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>signup</title>
+  <title>login</title>
   <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/navbar.css">
@@ -13,95 +13,94 @@
   <style type="text/css">
 
   body {
-    /* overflow: hidden; */ /* when used scroll doesn't work */
     margin: 0;
-    font-size: 0.9em;
-    font-family: "georgia";
-    background-image: url("./images/white.jpg");
-    background-size: 100%;
-    background-size: cover;
-    /* background-repeat: no-repeat; */
-  }
-
-  input[type=text] {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid white;
-    margin: 3em;
-    margin-top: 7em;
-    margin-bottom: 0;
     font-size: 1em;
-    font-family: "Avenir"
-  }
-
-  body {
-    /* overflow: hidden; */ /* when used scroll doesn't work */
-    margin: 0;
-    font-size: 0.9em;
-    font-family: "georgia";
+    font-family: "Georgia";
     background-image: url("./images/backgrounds-06.jpg");
     background-size: 100%;
   }
 
-  form {
-    text-align: center;
-    display: block;
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: 0;
+    font-size: 1em;
+    font-family: "Avenir";
+    color: white;
   }
 
   #info {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
-  .signup-container {
-    display: block;
-    text-align: center;
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 3em;
   }
 
-  #signup {
-    text-decoration: none;
+  #button {
+    padding: 0.5em;
     color: white;
     font-size: 1em;
     font-family: "Avenir"
   }
 
+  #button a {
+    text-decoration: none;
+    color: white;
+  }
+
+  #logo-img {
+    margin-top: 5em;
+    margin-bottom: 2.5em;
+    text-align: center;
+  }
+
+  #logo-img img {
+    width: 17em;
+  }
+
+  #outer {
+    padding-bottom: 5em;
+    display: flex;
+    justify-content: center;
+  }
+
+  #box {
+    margin-top: 3em;
+    border: solid white 1px;
+    width: 36em;
+    height: 46em;
+  }
+
 </style>
 </head>
 <body>
-  <div>
-    <div class="topnav">
-      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" style="cursor: pointer;">
-        <script>
-          // returns to home after clicking on logo.
-          document.getElementById("logo").onclick = function() {
-            window.location.href = "index.html";
-            };
-        </script>
-      </div>
-      <div id="nav-item">Your Wine Compass</div>
-      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
-    </div>
+  <div id="outer">
+  <div id="box">
+
+    <div id="logo-img"><img src="images/logo.png"></div>
 
     <form id="info">
-      <div>
-        <input type="text" name="firstname" placeholder="First name">
-        <input type="text" name="lastname" placeholder="Last name">
-      </div>
-      <div>
-        <input type="text" name="birthday" placeholder="Date of birth">
+
         <input type="text" name="email" placeholder="Email">
-      </div>
-      <div>
-        <input type="text" name="password" placeholder="Password">
-        <input type="text" name="confirm" placeholder="Confirm your password">
-      </div>
+        <input type="password" name="password" placeholder="Password">
+
     </form>
-    <div class="signup-container">
-      <a id="signup" href="survey.html">Sign up</a>
-    </div>
-    <div style="height: 10vh;">
+    <div class="button-container">
+      <div id="button"><a href="result.html">Login</a></div>
+      <div id="button"><a href="signup.html">Sign up here</a></div>
     </div>
   </div>
+</div>
 </body>
 </html>

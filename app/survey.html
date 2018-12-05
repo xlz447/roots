@@ -22,7 +22,7 @@
 
   .smavnir{
     font-family: 'Avenir Black', sans-serif;
-    font-size: 20pt;
+    font-size: 13pt;
     font-weight: bold;
   }
   .empty{
@@ -75,11 +75,10 @@
   <div class="topnav">
     <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" style="cursor: pointer;">
       <script>
-        // returns to home after clicking on logo.
-        document.getElementById("logo").onclick = function() {
-          window.location.href = "index.html";
-          };
-      </script>
+      // returns to home after clicking on logo.
+document.getElementById("logo").onclick = function() { window.location.href =
+"index.html"; };
+</script>
     </div>
     <div id="nav-item">Your Wine Compass</div>
     <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
@@ -149,32 +148,15 @@
   </div>
   </div>
   <script type="text/javascript">
-    var list1 = document.getElementsByClassName('square1');
-    for (var i = 0; i < list1.length; i++)
-    {
-      list1[i].addEventListener('click', function (event)
-      {
-        for (var j = 0; j < list1.length; j++)
-          {
-            list1[j].classList.remove("fill");
-          }
-        event.target.classList.add("fill");
-      });
-    }
-
-    var list2 = document.getElementsByClassName('square2');
-    for (var i = 0; i < list2.length; i++)
-    {
-      list2[i].addEventListener('click', function (event)
-      {
-        for (var j = 0; j < list2.length; j++)
-          {
-            list2[j].classList.remove("fill");
-          }
-        event.target.classList.add("fill");
-      });
-    }
-  </script>
+  var list1 = document.getElementsByClassName('square1'); for (var i = 0; i <
+list1.length; i++) { list1[i].addEventListener('click', function (event) { for
+(var j = 0; j < list1.length; j++) { list1[j].classList.remove("fill"); }
+event.target.classList.add("fill"); }); } var list2 =
+document.getElementsByClassName('square2'); for (var i = 0; i < list2.length;
+i++) { list2[i].addEventListener('click', function (event) { for (var j = 0; j <
+list2.length; j++) { list2[j].classList.remove("fill"); }
+event.target.classList.add("fill"); }); }
+</script>
 
 </body>
 </html>
