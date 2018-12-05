@@ -19,7 +19,7 @@
     /* background-repeat: no-repeat; */
   }
 
-  input[type=text] {
+  input {
     background: transparent;
     border: none;
     border-bottom: 2px solid white;
@@ -27,7 +27,8 @@
     margin-top: 7em;
     margin-bottom: 0;
     font-size: 1em;
-    font-family: "Avenir"
+    font-family: "Avenir";
+    color: white;
   }
 
   body {
@@ -71,7 +72,7 @@
   }
 
   #logo-img {
-    margin-top: 15em;
+    margin-top: 10em;
     text-align: center;
   }
 
@@ -79,25 +80,40 @@
     width: 20em;
   }
 
+  #outer {
+    display: flex;
+    justify-content: center;
+  }
+
+  #box {
+    margin-top: 10em;
+    border: solid white 1px;
+    width: 50em;
+    height: 60em;
+    /* align-items: center; */
+  }
+
 </style>
 </head>
 <body>
-  <div>
+  <div id="outer">
+  <div id="box">
 
     <div id="logo-img"><img src="images/logo.png"></div>
 
     <form id="info">
       <div>
         <input type="text" name="email" placeholder="Email">
-        <input type="text" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password">
       </div>
     </form>
     <div class="button-container">
       <div id="button"><a href="result.html">Login</a></div>
       <div id="button"><a href="signup.html">Sign up here</a></div>
     </div>
-    <div style="height: 10vh;">
-    </div>
+    <!-- <div style="height: 10vh;">
+    </div> -->
   </div>
+</div>
 </body>
 </html>
