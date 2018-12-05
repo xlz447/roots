@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>login</title>
+  <title>signup</title>
   <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/navbar.css">
   <style type="text/css">
 
+
   body {
-    margin: 0;
     font-size: 1em;
     font-family: "Georgia";
     background-image: url("./images/backgrounds-06.jpg");
@@ -29,9 +29,8 @@
   }
 
   form {
-    display: block;
-    padding: 5em;
     text-align: center;
+    display: block;
   }
 
   #info {
@@ -39,66 +38,53 @@
     flex-direction: column;
   }
 
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .signup-container {
+    display: block;
+    text-align: center;
     margin-top: 3em;
   }
 
-  #button {
-    padding: 1em;
-    color: white;
-    font-size: 1em;
-    font-family: "Avenir"
-  }
-
-  #button a {
+  #signup {
     text-decoration: none;
     color: white;
-  }
-
-  #logo-img {
-    margin-top: 7em;
-    text-align: center;
-  }
-
-  #logo-img img {
-    width: 20em;
-  }
-
-  #outer {
-    display: flex;
-    justify-content: center;
-  }
-
-  #box {
-    margin-top: 8em;
-    border: solid white 1px;
-    width: 48em;
-    height: 56em;
+    font-family: "Avenir"
   }
 
 </style>
 </head>
 <body>
-  <div id="outer">
-  <div id="box">
-
-    <div id="logo-img"><img src="images/logo.png"></div>
+  <div>
+    <div class="topnav">
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" style="cursor: pointer;">
+        <script>
+        // returns to home after clicking on logo.
+document.getElementById("logo").onclick = function() { window.location.href =
+"index.html"; };
+</script>
+      </div>
+      <div id="nav-item">Your Wine Compass</div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+    </div>
 
     <form id="info">
       <div>
+        <input type="text" name="firstname" placeholder="First name">
+        <input type="text" name="lastname" placeholder="Last name">
+      </div>
+      <div>
+        <input type="text" name="birthday" placeholder="Date of birth">
         <input type="text" name="email" placeholder="Email">
+      </div>
+      <div>
         <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirm" placeholder="Confirm your password">
       </div>
     </form>
-    <div class="button-container">
-      <div id="button"><a href="result.html">Login</a></div>
-      <div id="button"><a href="signup.html">Sign up here</a></div>
+    <div class="signup-container">
+      <a id="signup" href="survey.html">Sign up</a>
+    </div>
+    <div style="height: 10vh;">
     </div>
   </div>
-</div>
 </body>
 </html>
