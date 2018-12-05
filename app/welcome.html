@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <style type="text/css">
 
   body {
@@ -57,8 +57,6 @@
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 200;
-  transition-timing-function: ease-in-out;
-  -webkit-transition: all 0.5s ease-in-out;
   pointer-events: auto;
   cursor: pointer;
   z-index: 20;
@@ -134,10 +132,10 @@
           </div>
         </div>
         <div class="col-4"></div>
-        <div class="smavnir col-12 wrong" style="margin-top: 3vh; display: none;">
+        <div class="smavnir col-12 wrong" style="margin-top: 3vh; display: none; opacity: 0;">
           What went wrong ?
         </div>
-        <div class="col-12 wrong" style="margin-top: 3vh; display: none">
+        <div class="col-12 wrong" style="margin-top: 3vh; display: none; opacity: 0;">
           <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
@@ -159,10 +157,10 @@
             <div class="col-3"></div>
           </div>
         </div>
-        <div class="col-12" id="sumbmitcol" style="margin-top: 3vh; opacity: 0; height: 36px;">
-          <a id="submit" href="image.html" >Submit</a>
+        <div class="col-12" id="sumbmitcol" style="margin-top: 3vh;height: 36px; display: none; opacity: 0;">
+          <a id="submit" href="#" >Submit</a>
         </div>
-        <div class="smavnir col-12" id="havent" style="margin-top: 3vh; height: 36px;">
+        <div class="smavnir col-12" id="havent" style="position: absolute; bottom: 50px; height: 36px;">
           <a href="#" style="text-decoration: none; color: inherit;">I have not tried it yet</a>
         </div>
     </div>
@@ -174,18 +172,71 @@
     var stars = 0;
     $(".starimg").click(function()
     {
-      stars = parseInt(this.id.substr(4)) + 1;
-      if (stars == 5)
+      if (stars == 0)
       {
-        console.log("show submit");
-        $(".wrong").css("display", "none");
-        $("#sumbmitcol").css("opacity", "1");
+        stars = parseInt(this.id.substr(4)) + 1;
+        if (stars == 5)
+        {
+          $(".wrong").animate({
+            opacity: 0
+          }, 500 );
+          $(".wrong")
+          .delay(0)
+          .queue(function (next) { 
+            $(this).css('display', 'none'); 
+            next(); 
+          });
+          $("#sumbmitcol")
+          .delay(0)
+          .queue(function (next) { 
+            $(this).css('display', 'block'); 
+            next(); 
+          });
+          $("#sumbmitcol").animate({
+            opacity: 1
+          }, 500 );
+        }
+        else
+        {
+          $(".wrong").css("display", "block");
+          $(".wrong").animate({
+            opacity: 1
+          }, 500 );
+        }
       }
       else
       {
-        console.log("remove submit");
-        $(".wrong").css("display", "block");
+        stars = parseInt(this.id.substr(4)) + 1;
+        if (stars == 5)
+        {
+          $(".wrong").animate({
+            opacity: 0
+          }, 500 );
+          $(".wrong")
+          .delay(0)
+          .queue(function (next) { 
+            $(this).css('display', 'none'); 
+            next(); 
+          });
+          $("#sumbmitcol")
+          .delay(550)
+          .queue(function (next) { 
+            $(this).css('display', 'block'); 
+            next(); 
+          });
+          $("#sumbmitcol").animate({
+            opacity: 1
+          }, 500 );
+        }
+        else
+        {
+          $(".wrong").css("display", "block");
+          $(".wrong").animate({
+            opacity: 1
+          }, 500 );
+        }
       }
+      
       var i = 0;
       for (; i < stars; i++)
         $("#star" + i).attr("src", "images/onestarbluefull.png");
@@ -195,7 +246,15 @@
     $(".square").click(function()
     {
       $(this).toggleClass("fill");
-      $("#sumbmitcol").css("opacity", "1");
+      $("#sumbmitcol")
+      .delay(0)
+      .queue(function (next) { 
+        $(this).css('display', 'block'); 
+        next(); 
+      });
+      $("#sumbmitcol").animate({
+        opacity: 1
+      }, 500 );
     });
   </script>
 </body>
