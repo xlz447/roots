@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Thank you</title>
+  <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <style type="text/css">
+  #logo {
+    width: 4em;
+  }
+
+  body {
+    margin: 0;
+    font-size: 0.9em;
+    font-family: "georgia";
+    background-image: url("./images/backgrounds-06.jpg");
+    background-size: 100%;
+    background-size: cover;
+  }
+
+  .smavnir{
+    font-family: 'Avenir Black', sans-serif;
+    font-size: 12pt;
+    color:#fdfefc;
+  }
+
+  .bigwelcome{
+    font-family: Georgia;
+    font-size: 20pt;
+    font-weight: bold;
+    margin-top: 5vh;
+    padding-bottom: 25px;
+    color: #fdfefc;
+  }
+
+  #submit {
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 5px 20px;
+  color: #fdfefc;
+  border-top: solid 1.5px #3dbeb3;
+  border-bottom: solid 1.5px #3dbeb3;
+  border-radius: 2px;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 200;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 20;
+  }
+  #submit:hover{
+    color:#fdfefc;
+    background:#3dbeb3;
+  }
+</style>
+</head>
+<body>
+  <div>
+    <div class="topnav">
+      <div id="nav-item"><img src="./images/logorootsblack.svg" id="logo" style="cursor: pointer;">
+        <script>
+          // returns to home after clicking on logo.
+          document.getElementById("logo").onclick = function() {
+            window.location.href = "index.html";
+          };
+        </script>
+      </div>
+      <div id="nav-item">Your Wine Compass</div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+    </div>
+
+    <div style="text-align: center;">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="bigwelcome">Thank you !</h1>
+        </div>
+        <div class="smavnir col-12" style="margin-top: 4vh;">
+          Your feedback will help us recommend you<br>an even better wine next time!
+        </div>     
+        <div class="col-12" id="sumbmitcol" style="margin-top: 6vh;height: 36px;">
+          <a id="submit" href="result.html" >Back to Profile</a>
+        </div>
+    </div>
+
+    <div style="height: 10vh;">
+    </div>
+  </div>
+</body>
+</html>
