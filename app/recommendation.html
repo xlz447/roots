@@ -20,7 +20,7 @@
   		  font-family: "georgia";
         background-image: url("./images/white.jpg");
         background-size: 100%;
-        background-size: cover;
+        /* background-size: cover; */
         /* background-repeat: no-repeat; */
   		}
 
@@ -220,12 +220,15 @@
 
     fillRecommendationHTML = (recommendation) => {
       const container = document.getElementById('recommendation-container');
-      // const div = document.getElementById('recommendation');
+      let counter = 0;
       recommendation.forEach(wine => {
         recommendation_node = createRecommendationHTML(wine);
         if (recommendation_node) {
-          container.appendChild(createRecommendationHTML(wine));
-          container.appendChild(document.createElement('hr'));
+          counter += 1;
+          if (counter < 3) {
+            container.appendChild(createRecommendationHTML(wine));
+            container.appendChild(document.createElement('hr'));
+          }
         }
 
       });
@@ -296,7 +299,7 @@
         const tastingNotes_div = document.createElement('div');
         recommendation_div.appendChild(tastingNotes_div);
         const tastingNotes = document.createElement('div');
-        tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button">Find it around you</button>`;
+        tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button" onclick="location.href='map.html'">Find it around you</button>`;
         tastingNotes_div.appendChild(tastingNotes);
 
         return recommendation_div;
