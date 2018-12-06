@@ -215,7 +215,8 @@
         }
       }
     }
-
+    sessionStorage.clear();
+    sessionStorage.setItem('wine',JSON.stringify(recommendation));
     // console.log(recommendation);
 
     fillRecommendationHTML = (recommendation) => {
@@ -296,7 +297,7 @@
         const tastingNotes_div = document.createElement('div');
         recommendation_div.appendChild(tastingNotes_div);
         const tastingNotes = document.createElement('div');
-        tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button">Find it around you</button>`;
+        tastingNotes.innerHTML = `<p>${wine.tasting_notes}</p><button id="button" onclick="location.href='map.html'">Find it around you</button>`;
         tastingNotes_div.appendChild(tastingNotes);
 
         return recommendation_div;

@@ -30,7 +30,9 @@
         padding-left: 0;
         padding-right: 0;
         display: inline-block;
-        background-color: none; 
+        background-color: none;
+        position: absolute;
+        top: 32%
       }
       .fill{
         background-color: #3dbeb3;
@@ -58,16 +60,22 @@
     <div id="body">
       <div class="row">
         <div class="col-1"></div>
-        <div class="col-3">
-          <div class="row" style="margin-top: 10vh;">
+        <div class="col-3" id="wines">
+
+
+
+          `<div class="row" style="margin-top: 10vh;">
             <div class="col-2"></div>
             <div class="col-2">
-              <div class="square" id="sq0"></div>
+              <div class="square" id="sq{i}"></div>
             </div>
             <div class="col-6">
               <div class="winename">Sean Minor<br>Pinot Noir<br>2016</div>
             </div>
-          </div>
+          </div>`
+
+
+
           <div class="row" style="margin-top: 5vh;">
             <div class="col-2"></div>
             <div class="col-2">
@@ -77,6 +85,9 @@
             <div class="winename">Elouan<br>Pinot Noir<br>2016</div>
             </div>
           </div>
+
+
+
           <div class="row" style="margin-top: 5vh;">
             <div class="col-2"></div>
             <div class="col-2">
@@ -86,6 +97,9 @@
             <div class="winename">Roots<br>Cellar<br>2018</div>
             </div>
           </div>
+
+
+
         </div>
         <div class="col-7" style="margin-top: 5vh">
           <img src="images/map.png" style="height: 40vh; width: 55vw">
@@ -94,12 +108,26 @@
       </div>
     </div>
     <script type="text/javascript">
+      $("#wines").append(
+                  `<div class="row" style="margin-top: 10vh;">
+            <div class="col-2"></div>
+            <div class="col-2">
+              <div class="square" id="sq${i}"></div>
+            </div>
+            <div class="col-6">
+              <div class="winename">Sean Minor<br>Pinot Noir<br>2016</div>
+            </div>
+          </div>`
+        )
+
+
       $(".square").click(function()
       {
-        $("#sq0").css("background-color", "none");
-        $("#sq1").css("background-color", "none");
-        $("#sq2").css("background-color", "none");
+        $("#sq0").css("background-color", "");
+        $("#sq1").css("background-color", "");
+        $("#sq2").css("background-color", "");
         $(this).css("background-color", "#3dbeb3");
+        console.log(JSON.parse(sessionStorage.getItem('wine')));
       });
     </script>
   </body>
