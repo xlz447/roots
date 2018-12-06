@@ -100,7 +100,7 @@
         </script>
       </div>
       <div id="nav-item">Your Wine Compass</div>
-      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="#"><i class="fa fa-user"></i></a></div>
+      <div id="nav-item"><a href="#"><i class="fa fa-search"></i></a><a href="result.html"><i class="fa fa-user"></i></a></div>
     </div>
 
     <div style="text-align: center;">
@@ -192,15 +192,15 @@
           }, 500 );
           $(".wrong")
           .delay(0)
-          .queue(function (next) { 
-            $(this).css('display', 'none'); 
-            next(); 
+          .queue(function (next) {
+            $(this).css('display', 'none');
+            next();
           });
           $("#sumbmitcol")
           .delay(0)
-          .queue(function (next) { 
-            $(this).css('display', 'block'); 
-            next(); 
+          .queue(function (next) {
+            $(this).css('display', 'block');
+            next();
           });
           $("#sumbmitcol").animate({
             opacity: 1
@@ -224,15 +224,15 @@
           }, 500 );
           $(".wrong")
           .delay(0)
-          .queue(function (next) { 
-            $(this).css('display', 'none'); 
-            next(); 
+          .queue(function (next) {
+            $(this).css('display', 'none');
+            next();
           });
           $("#sumbmitcol")
           .delay(550)
-          .queue(function (next) { 
-            $(this).css('display', 'block'); 
-            next(); 
+          .queue(function (next) {
+            $(this).css('display', 'block');
+            next();
           });
           $("#sumbmitcol").animate({
             opacity: 1
@@ -246,7 +246,7 @@
           }, 500 );
         }
       }
-      
+
       var i = 0;
       for (; i < stars; i++)
         $("#star" + i).attr("src", "images/onestarbluefull.png");
@@ -258,9 +258,9 @@
       $(this).toggleClass("fill");
       $("#sumbmitcol")
       .delay(0)
-      .queue(function (next) { 
-        $(this).css('display', 'block'); 
-        next(); 
+      .queue(function (next) {
+        $(this).css('display', 'block');
+        next();
       });
       $("#sumbmitcol").animate({
         opacity: 1
