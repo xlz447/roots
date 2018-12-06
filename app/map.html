@@ -93,8 +93,8 @@
     </div>
     <script type="text/javascript">
       var elm = JSON.parse(sessionStorage.getItem('wine'));
-
-      for (var i = 0; i < elm.length; i++)
+      var i = 0;
+      for (; i < elm.length; i++)
       {
         $("#wines").append(
                     `<div class="row" style="margin-top: 5vh;">
@@ -121,7 +121,7 @@
       )
       $(".square").click(function()
       {
-        for (var i = 0; i < elm.length; i++)
+        for (var i = 0; i < elm.length + 1; i++)
           $("#sq" + i).css("background-color", "");
         $(this).css("background-color", "#3dbeb3");
       });
