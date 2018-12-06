@@ -220,12 +220,15 @@
 
     fillRecommendationHTML = (recommendation) => {
       const container = document.getElementById('recommendation-container');
-      // const div = document.getElementById('recommendation');
+      let counter = 0;
       recommendation.forEach(wine => {
         recommendation_node = createRecommendationHTML(wine);
         if (recommendation_node) {
-          container.appendChild(createRecommendationHTML(wine));
-          container.appendChild(document.createElement('hr'));
+          counter += 1;
+          if (counter < 3) {
+            container.appendChild(createRecommendationHTML(wine));
+            container.appendChild(document.createElement('hr'));
+          }
         }
 
       });
