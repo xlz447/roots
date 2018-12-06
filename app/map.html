@@ -94,7 +94,20 @@
     <script type="text/javascript">
       var elm = JSON.parse(sessionStorage.getItem('wine'));
 
-      for (var i = 0; i < elm.length; i++) {
+      for (var i = 0; i < elm.length; i++)
+      {
+        $("#wines").append(
+                    `<div class="row" style="margin-top: 5vh;">
+              <div class="col-2"></div>
+              <div class="col-2">
+                <div class="square" id="sq${i}"></div>
+              </div>
+              <div class="col-6">
+                <div class="winename">${elm[i].bottle_label}<br>${elm[i].variety.variety_label}<br>${elm[i].bottle_year}</div>
+              </div>
+            </div>`
+        )
+      }
       $("#wines").append(
                   `<div class="row" style="margin-top: 5vh;">
             <div class="col-2"></div>
@@ -102,11 +115,10 @@
               <div class="square" id="sq${i}"></div>
             </div>
             <div class="col-6">
-              <div class="winename">${elm[i].bottle_label}<br>${elm[i].variety.variety_label}<br>${elm[i].bottle_year}</div>
+              <div class="winename">Roots<br>Cellar</div>
             </div>
           </div>`
-        )
-      }
+      )
       $(".square").click(function()
       {
         for (var i = 0; i < elm.length; i++)
