@@ -63,6 +63,6 @@ Wine Recommender Page
 
 Welcome Back
 
-
+## User Flow Diagram
 
 ![alt text](https://github.com/ziyanfeng/roots/blob/master/misc/UserFlowDiagram.png "User Flow Diagram")
