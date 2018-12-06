@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>result</title>
+  <title>Profile</title>
   <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -26,7 +26,7 @@
         // returns to home after clicking on logo.
         document.getElementById("logo").onclick = function() {
           window.location.href = "result.html";
-          };
+        };
       </script>
     </div>
     <div id="nav-item">Your Wine Compass</div>
@@ -194,8 +194,8 @@
     start: [20, 80],
     connect: true,
     range: {
-        'min': 0,
-        'max': 500
+      'min': 0,
+      'max': 500
     }
   });
   slider.noUiSlider.on("update", function(values){
