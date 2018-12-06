@@ -41,6 +41,27 @@
         font-family: Georgia; font-size: 14pt; font-weight: bold;
         display: inline-block;
       }
+
+      #submit {
+        font-size: 1.5rem;
+        text-decoration: none;
+        padding: 5px 20px;
+        color: #3dbeb3;
+        border-top: solid 1.5px #3dbeb3;
+        border-bottom: solid 1.5px #3dbeb3;
+        border-radius: 2px;
+        font-family: "Georgia", serif;
+        font-style: normal;
+        font-weight: 200;
+        transition-timing-function: ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        pointer-events: auto;
+        cursor: pointer;
+      }
+      #submit:hover{
+        color:#fdfefc;
+        background:#3dbeb3;
+      }
   	</style>
   </head>
   <body>
@@ -60,74 +81,37 @@
     <div id="body">
       <div class="row">
         <div class="col-1"></div>
-        <div class="col-3" id="wines">
-
-
-
-          `<div class="row" style="margin-top: 10vh;">
-            <div class="col-2"></div>
-            <div class="col-2">
-              <div class="square" id="sq{i}"></div>
-            </div>
-            <div class="col-6">
-              <div class="winename">Sean Minor<br>Pinot Noir<br>2016</div>
-            </div>
-          </div>`
-
-
-
-          <div class="row" style="margin-top: 5vh;">
-            <div class="col-2"></div>
-            <div class="col-2">
-              <div class="square" id="sq1"></div>
-            </div>
-            <div class="col-6">
-            <div class="winename">Elouan<br>Pinot Noir<br>2016</div>
-            </div>
-          </div>
-
-
-
-          <div class="row" style="margin-top: 5vh;">
-            <div class="col-2"></div>
-            <div class="col-2">
-              <div class="square" id="sq2"></div>
-            </div>
-            <div class="col-6">
-            <div class="winename">Roots<br>Cellar<br>2018</div>
-            </div>
-          </div>
-
-
-
-        </div>
+        <div class="col-3" id="wines"></div>
         <div class="col-7" style="margin-top: 5vh">
-          <img src="images/map.png" style="height: 40vh; width: 55vw">
+          <img src="images/map.png" style="height: 540px; width: 1000px">
         </div>
         <div class="col-1"></div>
+        <div class="col-12" id="sumbmitcol" style="margin-top: 6vh;height: 36px; text-align: center;">
+          <a id="submit" href="result.html" >Submit</a>
+        </div>
       </div>
     </div>
     <script type="text/javascript">
+      var elm = JSON.parse(sessionStorage.getItem('wine'));
+
+      for (var i = 0; i < elm.length; i++) {
       $("#wines").append(
-                  `<div class="row" style="margin-top: 10vh;">
+                  `<div class="row" style="margin-top: 5vh;">
             <div class="col-2"></div>
             <div class="col-2">
               <div class="square" id="sq${i}"></div>
             </div>
             <div class="col-6">
-              <div class="winename">Sean Minor<br>Pinot Noir<br>2016</div>
+              <div class="winename">${elm[i].bottle_label}<br>${elm[i].variety.variety_label}<br>${elm[i].bottle_year}</div>
             </div>
           </div>`
         )
-
-
+      }
       $(".square").click(function()
       {
-        $("#sq0").css("background-color", "");
-        $("#sq1").css("background-color", "");
-        $("#sq2").css("background-color", "");
+        for (var i = 0; i < elm.length; i++)
+          $("#sq" + i).css("background-color", "");
         $(this).css("background-color", "#3dbeb3");
-        console.log(JSON.parse(sessionStorage.getItem('wine')));
       });
     </script>
   </body>
