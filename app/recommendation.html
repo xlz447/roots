@@ -199,6 +199,7 @@
 
     <script>
     let recommendation = [];
+    let listonmap = [];
     if (wines)
     {
       for (let wine of wines.wines) {
@@ -215,8 +216,6 @@
         }
       }
     }
-    sessionStorage.clear();
-    sessionStorage.setItem('wine',JSON.stringify(recommendation));
     // console.log(recommendation);
 
     fillRecommendationHTML = (recommendation) => {
@@ -227,10 +226,14 @@
         if (recommendation_node) {
           counter += 1;
           if (counter < 3) {
+            listonmap.push(wine);
             container.appendChild(createRecommendationHTML(wine));
             container.appendChild(document.createElement('hr'));
           }
         }
+        
+      sessionStorage.clear();
+      sessionStorage.setItem('wine',JSON.stringify(listonmap));
 
       });
       const recommendation_div = document.createElement('div');
