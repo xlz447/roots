@@ -2,6 +2,7 @@
 
 Link to the product:
 https://roots-6e5b4.firebaseapp.com/
+Link to the landing page:
 
 
 ## Engineering Team
@@ -48,6 +49,8 @@ Product Live URL: https://roots-6e5b4.firebaseapp.com/
 ## Main Implemented Features
 
 Image Selector Page
+
+Landing Page
 
 Live Hosting
 
