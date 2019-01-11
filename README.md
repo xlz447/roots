@@ -1,10 +1,13 @@
-# Roots Technical Product Documentation
+# Roots Product Readme
 
 Link to the product:
 https://roots-6e5b4.firebaseapp.com/
 
 Link to the landing page:
 https://roots-landing-page-86e6d.firebaseapp.com/
+
+Link to the product documentation:
+https://docs.google.com/document/d/1fSputpwWqbr3gCGWuxYmFNiKUsuAyzRpNjGlfR_e3Z8/edit?usp=sharing
 
 ## Engineering Team
 
