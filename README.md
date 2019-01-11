@@ -9,6 +9,9 @@ https://roots-landing-page-86e6d.firebaseapp.com/
 Link to the product documentation:
 https://docs.google.com/document/d/1fSputpwWqbr3gCGWuxYmFNiKUsuAyzRpNjGlfR_e3Z8/edit?usp=sharing
 
+Link to product demo:
+https://vimeo.com/304078797
+
 ## Engineering Team
 
 zfeng https://github.com/ziyanfeng
